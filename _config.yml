@@ -38,7 +38,7 @@ social:
   email: di.zhang@ustc.edu # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - mailto:di.zhang@ustc.edu # change to your twitter homepage
+    # - mailto:di.zhang@ustc.edu # change to your twitter homepage
     - https://github.com/trotsky1997 # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
