@@ -1,5 +1,8 @@
 name: Get Citation Data
 
+permissions:
+  contents: write
+
 on: 
  page_build: 
  schedule:
