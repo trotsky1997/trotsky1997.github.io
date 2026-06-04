@@ -65,6 +65,7 @@ include:
 
 exclude:
   - docs
+  - openspec
   - google_scholar_crawler
   - "*.sublime-project"
   - "*.sublime-workspace"

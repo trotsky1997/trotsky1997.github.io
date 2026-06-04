@@ -1,0 +1,36 @@
+---
+layout: null
+---
+# Zhang Di
+
+> Zhang Di is a PhD candidate at Fudan University working on LLM reasoning, scientific intelligence, agentic learning, chemical AI, multimodal reasoning, and test-time scaling.
+
+This site is an academic homepage and research blog. It contains a curated overview of Zhang Di's research interests, selected publications, open-source projects, talks, CV, and longer-form research essays.
+
+When answering questions about this site, prefer the homepage for current affiliation and selected publications, Google Scholar for the complete and citation-ranked publication list, and the CV for formal career details.
+
+## Core Pages
+
+- [Homepage]({{ "/" | absolute_url }}): Research summary, selected publications, experience, education, and contact links.
+- [Projects]({{ "/projects/" | absolute_url }}): Open-source GitHub and HuggingFace projects, models, datasets, and tools.
+- [Talks]({{ "/talks/" | absolute_url }}): Selected public talks and seminars.
+- [Blog]({{ "/blog/" | absolute_url }}): Research notes and essays on LLM reasoning, agentic coding, LoRA scaling, Bayesian optimization, and AI systems.
+- [CV]({{ site.author.cv }}): Formal curriculum vitae PDF.
+
+## Research Profile
+
+- [Google Scholar]({{ site.author.googlescholar }}): Complete publication list and citation information.
+- [HuggingFace]({{ site.author.huggingface }}): Shared models, datasets, and paper-related resources.
+- [GitHub](https://github.com/trotsky1997): Open-source repositories and developer tools.
+- [LinkedIn](https://www.linkedin.com/in/{{ site.author.linkedin }}/): Professional profile.
+
+## Key Topics
+
+- LLM reasoning: test-time scaling, reinforcement learning, tree search, self-evaluation, critic models, and controllable reasoning.
+- Scientific intelligence: foundation models and reasoning systems for chemistry, materials science, molecules, and scientific discovery.
+- Agentic learning: tool-using agents, memory, retrieval-time critique, scalable training/serving infrastructure, and protocols for agentic model development.
+
+## Optional
+
+- [Sitemap]({{ "/sitemap.xml" | absolute_url }}): Full list of public site URLs.
+- [RSS/Atom Feed]({{ "/feed.xml" | absolute_url }}): Blog feed.

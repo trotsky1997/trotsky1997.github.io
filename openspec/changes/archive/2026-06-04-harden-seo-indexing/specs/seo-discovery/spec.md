@@ -1,18 +1,4 @@
-# seo-discovery Specification
-
-## Purpose
-Define the site's SEO discovery behavior for page titles, descriptions, social previews, structured data, crawler guidance, and keyword/author hints.
-## Requirements
-### Requirement: Pages expose concise titles and descriptions
-The system SHALL generate concise, page-specific `<title>` and meta description values for every indexed page.
-
-#### Scenario: Rendering the homepage
-- **WHEN** the homepage is generated
-- **THEN** the title identifies Zhang Di and the research focus without embedding the full site description
-
-#### Scenario: Rendering an inner page
-- **WHEN** a non-homepage page is generated
-- **THEN** the title combines the page title with the site title
+## MODIFIED Requirements
 
 ### Requirement: Pages expose social preview metadata
 The system SHALL emit Open Graph and Twitter card metadata for generated pages using page-specific values when available, the first post image when no explicit page image is configured, and site defaults otherwise.
@@ -55,12 +41,7 @@ The system SHALL provide crawler guidance that permits indexing of public conten
 - **WHEN** the site is generated
 - **THEN** internal OpenSpec source and archived change documents are not present in the generated public site
 
-### Requirement: Pages expose keyword and author hints
-The system SHALL emit author and keyword meta tags from page front matter or site defaults.
-
-#### Scenario: Rendering a page without page keywords
-- **WHEN** a page omits keyword front matter
-- **THEN** the page uses configured site keywords as meta keywords
+## ADDED Requirements
 
 ### Requirement: LLM crawlers receive site guidance
 The system SHALL publish an `/llms.txt` Markdown file that summarizes the site and links to key pages useful for inference-time LLM and agent use.

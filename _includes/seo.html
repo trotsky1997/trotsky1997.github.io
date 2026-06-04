@@ -13,7 +13,15 @@
 {% assign seo_title = seo_raw_title | escape_once %}
 {% assign seo_description = page.description | default: page.excerpt | default: site.description | markdownify | strip_html | strip_newlines | normalize_whitespace | truncate: 180 | escape_once %}
 {% assign seo_canonical = page.url | absolute_url | replace: "/index.html", "/" %}
-{% assign seo_image = page.image | default: page.header.teaser | default: site.author.avatar %}
+{% assign seo_image = page.image | default: page.header.teaser %}
+{% if seo_image == nil or seo_image == "" %}
+  {% if page.layout == "post" and content contains '<img src="' %}
+    {% assign seo_image_parts = content | split: '<img src="' %}
+    {% assign seo_image = seo_image_parts[1] | split: '"' | first %}
+  {% else %}
+    {% assign seo_image = site.author.avatar %}
+  {% endif %}
+{% endif %}
 {% if seo_image contains "://" %}
   {% assign seo_image_url = seo_image %}
 {% else %}
@@ -29,6 +37,7 @@
 {% if seo_keywords and seo_keywords != "" %}<meta name="keywords" content="{{ seo_keywords }}">{% endif %}
 <meta name="robots" content="{{ seo_robots }}">
 <link rel="canonical" href="{{ seo_canonical }}">
+<link rel="alternate" hreflang="en" href="{{ seo_canonical }}">
 
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="{{ site.title }}">
@@ -108,6 +117,43 @@
     "name": {{ site.title | jsonify }},
     "url": {{ seo_site_url | jsonify }}
   }{% endif %}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "{{ seo_site_url }}/#website",
+      "name": {{ site.title | jsonify }},
+      "url": {{ seo_site_url | jsonify }},
+      "description": {{ site.description | jsonify }},
+      "publisher": {
+        "@type": "Person",
+        "name": {{ site.author.name | jsonify }},
+        "url": {{ seo_site_url | jsonify }}
+      }
+    }{% unless page.url == "/" %},
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{ seo_canonical }}#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": {{ seo_site_url | jsonify }}
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ seo_title | jsonify }},
+          "item": {{ seo_canonical | jsonify }}
+        }
+      ]
+    }{% endunless %}
+  ]
 }
 </script>
 <!-- end SEO -->
