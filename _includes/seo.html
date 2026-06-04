@@ -1,75 +1,81 @@
 <!-- begin SEO -->
-{% if site.url %}
-  {% assign seo_url = site.url %}
+{% assign seo_site_url = site.url | default: site.github.url %}
+{% assign seo_title = page.title | default: site.title | markdownify | strip_html | strip_newlines | escape_once %}
+{% if page.url == "/" %}
+  {% assign seo_page_title = site.title | append: " - " | append: site.description %}
+{% else %}
+  {% assign seo_page_title = seo_title | append: " | " | append: site.title %}
 {% endif %}
-{% assign seo_url = seo_url | default: site.github.url %}
-
-{% if site.url %}
-  {% assign canonical_url = page.url | replace: "index.html", "" | prepend: site.url %}
+{% assign seo_description = page.description | default: page.excerpt | default: site.description | markdownify | strip_html | strip_newlines | normalize_whitespace | escape_once %}
+{% assign seo_canonical = page.url | absolute_url | replace: "/index.html", "/" %}
+{% assign seo_image = page.image | default: page.header.teaser | default: site.author.avatar %}
+{% if seo_image contains "://" %}
+  {% assign seo_image_url = seo_image %}
+{% else %}
+  {% assign seo_image_url = seo_image | absolute_url %}
 {% endif %}
+{% assign seo_twitter = site.author.twitter | replace: "@", "" %}
 
-<title>{{ site.title }} - Homepage</title>
+<title>{{ seo_page_title }}</title>
+<meta name="description" content="{{ seo_description }}">
+<link rel="canonical" href="{{ seo_canonical }}">
 
-{% assign seo_description = page.description | default: page.excerpt | default: site.description %}
-{% if seo_description %}
-  {% assign seo_description = seo_description | markdownify | strip_html | strip_newlines | escape_once %}
-{% endif %}
-
-{% assign seo_author = page.author | default: page.author[0] | default: site.author[0] %}
-{% if seo_author %}
-  {% if seo_author.twitter %}
-    {% assign seo_author_twitter = seo_author.twitter %}
-  {% else %}
-    {% if site.data.authors and site.data.authors[seo_author] %}
-      {% assign seo_author_twitter = site.data.authors[seo_author].twitter  %}
-    {% else %}
-      {% assign seo_author_twitter = seo_author  %}
-    {% endif %}
-  {% endif %}
-  {% assign seo_author_twitter = seo_author_twitter | replace: "@", "" %}
-{% endif %}
-
-<meta property="og:locale" content="en">
+<meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="{{ site.title }}">
-<meta property="og:title" content="{{ site.title }}">
+<meta property="og:title" content="{{ seo_title }}">
+<meta property="og:description" content="{{ seo_description }}">
+<meta property="og:url" content="{{ seo_canonical }}">
+<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+<meta property="og:image" content="{{ seo_image_url }}">
 
-{% if seo_url %}
-  <link rel="canonical" href="{{ page.url | prepend: seo_url | replace: "/index.html", "/" }}">
-  <meta property="og:url" content="{{ page.url | prepend: seo_url | replace: "/index.html", "/" }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ seo_title }}">
+<meta name="twitter:description" content="{{ seo_description }}">
+<meta name="twitter:image" content="{{ seo_image_url }}">
+{% if seo_twitter %}
+<meta name="twitter:creator" content="@{{ seo_twitter }}">
+<meta name="twitter:site" content="@{{ seo_twitter }}">
 {% endif %}
 
-{% if page.excerpt %}
-  <meta property="og:description" content="{{ seo_description }}">
+{% if page.layout == "post" %}
+<meta property="article:author" content="{{ site.author.name }}">
+{% if page.date %}<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">{% endif %}
 {% endif %}
 
-{% if site.twitter.username %}
-  <meta name="twitter:site" content="@{{ site.twitter.username | replace: "@", "" }}">
-  <meta name="twitter:title" content="{{ page.title | default: site.title | markdownify | strip_html | strip_newlines | escape_once }}">
-  <meta name="twitter:description" content="{{ seo_description }}">
-  <meta name="twitter:url" content="{{ canonical_url }}">
-
-  {% if seo_author_twitter %}
-    <meta name="twitter:creator" content="@{{ seo_author_twitter }}">
-  {% endif %}
-{% endif %}
-
-{% if site.facebook %}
-  {% if site.facebook.publisher %}
-    <meta property="article:publisher" content="{{ site.facebook.publisher }}">
-  {% endif %}
-
-  {% if site.facebook.app_id %}
-    <meta property="fb:app_id" content="{{ site.facebook.app_id }}">
-  {% endif %}
-{% endif %}
-
-{% if site.google_site_verification %}
-  <meta name="google-site-verification" content="{{ site.google_site_verification }}" />
-{% endif %}
-{% if site.bing_site_verification %}
-  <meta name="msvalidate.01" content="{{ site.bing_site_verification }}">
-{% endif %}
-{% if site.baidu_site_verification %}
-  <meta name="baidu-site-verification" content="{{ site.baidu_site_verification }}" />
-{% endif %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{% if page.layout == 'post' %}BlogPosting{% elsif page.url == '/' %}Person{% else %}WebPage{% endif %}",
+  "name": {{ seo_title | jsonify }},
+  "headline": {{ seo_title | jsonify }},
+  "description": {{ seo_description | jsonify }},
+  "url": {{ seo_canonical | jsonify }},
+  "image": {{ seo_image_url | jsonify }}{% if page.layout == "post" %},
+  "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+  "dateModified": {{ page.last_modified_at | default: page.date | date_to_xmlschema | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": {{ site.author.name | jsonify }},
+    "url": {{ seo_site_url | jsonify }}
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": {{ site.author.name | jsonify }},
+    "url": {{ seo_site_url | jsonify }}
+  }{% elsif page.url == "/" %},
+  "jobTitle": {{ site.author.bio | jsonify }},
+  "affiliation": {
+    "@type": "Organization",
+    "name": {{ site.author.employer | jsonify }}
+  },
+  "email": {{ site.author.email | prepend: "mailto:" | jsonify }},
+  "sameAs": [
+    {{ site.author.googlescholar | jsonify }},
+    "https://github.com/trotsky1997",
+    {{ site.author.huggingface | jsonify }},
+    "https://www.linkedin.com/in/{{ site.author.linkedin }}/",
+    "https://x.com/{{ site.author.twitter }}"
+  ]{% endif %}
+}
+</script>
 <!-- end SEO -->

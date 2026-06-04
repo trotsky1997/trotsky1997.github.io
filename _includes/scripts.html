@@ -1,4 +1,19 @@
-<script src="{{ '/assets/js/main.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/main.min.js' | relative_url }}" defer></script>
+<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('a[href^="http"]').forEach(function (link) {
+      if (link.hostname && link.hostname !== window.location.hostname) {
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      }
+    });
+
+    document.querySelectorAll("img").forEach(function (img) {
+      if (!img.hasAttribute("loading")) img.loading = "lazy";
+      if (!img.hasAttribute("decoding")) img.decoding = "async";
+    });
+  });
+</script>
 
 {% include analytics.html %}
 {% include fetch_google_scholar_stats.html %}

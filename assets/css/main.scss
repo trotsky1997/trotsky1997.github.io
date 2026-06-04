@@ -193,6 +193,68 @@
     }
 }
 
+.talk-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    margin: 1rem 0 1.6rem;
+}
+
+.talk-item {
+    border-left: 3px solid var(--site-blue);
+    padding: 0.15rem 0 0.15rem 1rem;
+
+    h3 {
+        margin: 0.35rem 0 0.35rem;
+        color: #0f172a;
+        font-size: 1.06rem;
+        line-height: 1.3;
+    }
+
+    p {
+        margin: 0 0 0.5rem;
+        color: #475569;
+        font-size: 0.94rem;
+        line-height: 1.6;
+    }
+}
+
+.talk-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+
+    span {
+        border: 1px solid #e5e7eb;
+        border-radius: 999px;
+        padding: 0.12rem 0.45rem;
+        background: #f8fafc;
+        color: #64748b;
+        font-size: 0.72rem;
+        font-weight: 700;
+    }
+}
+
+.talk-links a {
+    display: inline-block;
+    margin: 0 0.35rem 0.32rem 0;
+    padding: 0.2rem 0.52rem;
+    border: 1px solid #d1d5db;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #1f2937;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.45;
+    text-decoration: none;
+
+    &:hover {
+        border-color: #93c5fd;
+        color: var(--site-blue);
+        text-decoration: none;
+    }
+}
+
 .project-list.compact {
     gap: 0.7rem;
 }

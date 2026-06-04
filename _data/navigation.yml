@@ -12,6 +12,9 @@ main:
   - title: "Projects"
     url: "/projects/"
 
+  - title: "Talks"
+    url: "/talks/"
+
   - title: "CV"
     url: "https://raw.githubusercontent.com/trotsky1997/trotsky1997/main/FDU-ZhangDi-CV-2026.pdf"
 
