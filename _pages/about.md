@@ -1,7 +1,8 @@
 ---
 permalink: /
 title: ""
-excerpt: ""
+excerpt: "Zhang Di is a PhD candidate at Fudan University working on LLM reasoning, scientific intelligence, agentic learning, and foundation models for scientific discovery."
+keywords: "Zhang Di, Di Zhang, Fudan University, LLM reasoning, scientific intelligence, agentic learning, chemical AI, test-time scaling"
 author_profile: true
 redirect_from:
   - /about/
