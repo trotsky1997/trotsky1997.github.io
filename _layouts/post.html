@@ -1,0 +1,134 @@
+---
+layout: default
+---
+
+<header class="post-header">
+  <h1 class="post-title">{{ page.title }}</h1>
+  <p class="post-meta">
+    {% if page.date %}{{ page.date | date: "%B %-d, %Y" }}{% endif %}
+    {% if page.original_medium_url %}
+      <span class="post-meta-separator">/</span>
+      <a href="{{ page.original_medium_url }}">Original on Medium</a>
+    {% elsif page.original_url %}
+      <span class="post-meta-separator">/</span>
+      <a href="{{ page.original_url }}">Original on {{ page.original_site | default: "source" }}</a>
+    {% endif %}
+  </p>
+</header>
+
+{% assign toc_items = content | split: '<h3 id="' %}
+
+<div class="post-layout">
+  {% if toc_items.size > 1 %}
+  <aside class="post-toc">
+    <details open>
+      <summary>Contents</summary>
+      <nav>
+        <ol>
+          {% for item in toc_items offset:1 %}
+            {% assign heading_id = item | split: '"' | first %}
+            {% assign heading_text = item | split: '>' | slice: 1, 99 | join: '>' | split: '</h3>' | first | strip_html | strip %}
+            {% if heading_id and heading_text != "" %}
+            <li><a href="#{{ heading_id }}">{{ heading_text }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ol>
+      </nav>
+    </details>
+  </aside>
+  {% endif %}
+
+  <div class="post-body">
+    {{ content }}
+  </div>
+</div>
+
+<section class="post-citation" id="citation">
+  <h2>Citation</h2>
+  {% assign citation_year = page.date | date: "%Y" %}
+  {% assign citation_month = page.date | date: "%B" %}
+  {% assign citation_key = page.slug | default: page.title | downcase | replace: " ", "-" | replace: "'", "" | replace: ":", "" | replace: ",", "" | replace: ".", "" | replace: "?", "" | replace: "!", "" | replace: "-", "" %}
+  {% assign citation_url = page.url | absolute_url %}
+  <p>
+    Zhang, Di. "{{ page.title }}." <em>Zhang Di Blog</em>, {{ page.date | date: "%B %-d, %Y" }}.
+    {% if page.original_medium_url %}
+      Originally published on <a href="{{ page.original_medium_url }}">Medium</a>.
+    {% elsif page.original_url %}
+      Originally published on <a href="{{ page.original_url }}">{{ page.original_site | default: "the original source" }}</a>.
+    {% endif %}
+  </p>
+  <details>
+    <summary>BibTeX</summary>
+    <div class="citation-code-block">
+      <button class="copy-citation-button" type="button" aria-label="Copy BibTeX citation" data-copy-target="citation-bibtex">Copy</button>
+{% raw %}<pre><code id="citation-bibtex">{% endraw %}@misc{zhang{{ citation_year }}{{ citation_key | slice: 0, 24 }},
+  title = { {{ page.title }} },
+  author = { Zhang, Di },
+  year = { {{ citation_year }} },
+  month = { {{ citation_month }} },
+  howpublished = {\url{ {{ citation_url }} }},
+  note = {Blog post{% if page.original_medium_url %}; originally published on Medium: {{ page.original_medium_url }}{% elsif page.original_url %}; originally published on {{ page.original_site | default: "the original source" }}: {{ page.original_url }}{% endif %}}
+}{% raw %}</code></pre>{% endraw %}
+    </div>
+  </details>
+</section>
+
+<script>
+  (function () {
+    var button = document.querySelector(".copy-citation-button");
+    if (!button) return;
+
+    var resetLabel = function () {
+      window.setTimeout(function () {
+        button.textContent = "Copy";
+        button.classList.remove("copied");
+      }, 1600);
+    };
+
+    button.addEventListener("click", function () {
+      var target = document.getElementById(button.getAttribute("data-copy-target"));
+      if (!target) return;
+
+      var text = target.textContent.trim();
+      var markCopied = function () {
+        button.textContent = "Copied";
+        button.classList.add("copied");
+        resetLabel();
+      };
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(markCopied).catch(function () {
+          var range = document.createRange();
+          range.selectNodeContents(target);
+          var selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+        });
+      } else {
+        var range = document.createRange();
+        range.selectNodeContents(target);
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        try {
+          if (document.execCommand("copy")) markCopied();
+        } catch (error) {}
+      }
+    });
+  })();
+</script>
+
+<footer class="post-nav">
+  {% if page.previous %}
+  <a class="post-nav-link post-nav-prev" href="{{ page.previous.url | relative_url }}">
+    <span>Previous</span>
+    {{ page.previous.title }}
+  </a>
+  {% endif %}
+  {% if page.next %}
+  <a class="post-nav-link post-nav-next" href="{{ page.next.url | relative_url }}">
+    <span>Next</span>
+    {{ page.next.title }}
+  </a>
+  {% endif %}
+</footer>
