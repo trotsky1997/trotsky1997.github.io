@@ -25,7 +25,8 @@ author:
   googlescholar    : "https://scholar.google.com/citations?user=vxAO250AAAAJ&hl=en"
   email            : "di.zhang@ustc.edu"
   cv               : "/files/FDU-ZhangDi-CV-2026.pdf"
-  github           :
+  blog             : "/blog/"
+  github           : "trotsky1997"
   twitter          : "di_zhang_fdu"
   huggingface      : "https://huggingface.co/di-zhang-fdu"
   medium           : "https://di-zhang-fdu.medium.com"

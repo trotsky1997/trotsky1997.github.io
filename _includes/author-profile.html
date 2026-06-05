@@ -38,6 +38,9 @@
       {% if author.cv %}
         <li><a href="{{ author.cv }}">CV</a></li>
       {% endif %}
+      {% if author.blog %}
+        <li><a href="{{ author.blog | relative_url }}">Blog</a></li>
+      {% endif %}
       {% if author.keybase %}
         <li><a href="https://keybase.io/{{ author.keybase }}">Keybase</a></li>
       {% endif %}
@@ -72,7 +75,7 @@
         <li><a href="https://bitbucket.org/{{ author.bitbucket }}">Bitbucket</a></li>
       {% endif %}
       {% if author.github %}
-        <li><a href="https://github.com/{{ author.github }}">Github</a></li>
+        <li><a href="https://github.com/{{ author.github }}">GitHub</a></li>
       {% endif %}
       {% if author.huggingface %}
         <li><a href="{{ author.huggingface }}">HuggingFace</a></li>
@@ -141,6 +144,9 @@
       {% endif %}
       {% if author.cv %}
         <a href="{{ author.cv }}" aria-label="CV"><span aria-hidden="true">CV</span></a>
+      {% endif %}
+      {% if author.blog %}
+        <a href="{{ author.blog | relative_url }}" aria-label="Blog"><span aria-hidden="true">Blog</span></a>
       {% endif %}
       {% if author.keybase %}
         <a href="https://keybase.io/{{ author.keybase }}" aria-label="Keybase"><span aria-hidden="true">Keybase</span></a>
