@@ -4,6 +4,7 @@ title: "An Intuitive Guide to Three Bayesian Optimization Acquisition Functions"
 date: 2024-08-20
 categories: [Blog]
 tags: [bayesian-optimization, acquisition-functions, machine-learning]
+math: true
 imported_from: old-site
 original_title: "通俗理解贝叶斯的三种采集函数"
 excerpt: "A plain-language explanation of Knowledge Gradient, Expected Improvement, and Upper Confidence Bound in Bayesian optimization."

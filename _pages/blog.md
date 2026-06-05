@@ -11,13 +11,26 @@ author_profile: true
 {% for post in site.posts %}
 {% assign image_parts = post.content | split: '<img src="' %}
 {% assign cover_image = "" %}
+{% assign cover_alt = post.title %}
+{% assign cover_width = "800" %}
+{% assign cover_height = "450" %}
 {% if image_parts.size > 1 %}
-  {% assign cover_image = image_parts[1] | split: '"' | first %}
+  {% assign first_image = image_parts[1] %}
+  {% assign cover_image = first_image | split: '"' | first %}
+  {% if first_image contains 'alt="' %}
+    {% assign cover_alt = first_image | split: 'alt="' | last | split: '"' | first | default: post.title %}
+  {% endif %}
+  {% if first_image contains 'width="' %}
+    {% assign cover_width = first_image | split: 'width="' | last | split: '"' | first %}
+  {% endif %}
+  {% if first_image contains 'height="' %}
+    {% assign cover_height = first_image | split: 'height="' | last | split: '"' | first %}
+  {% endif %}
 {% endif %}
 <article class="blog-list-item{% if cover_image != '' %} has-cover{% endif %}">
   {% if cover_image != "" %}
   <a class="blog-list-cover" href="{{ post.url | relative_url }}" aria-label="{{ post.title }}">
-    <img src="{{ cover_image }}" alt="">
+    <img src="{{ cover_image }}" alt="{{ cover_alt | escape }}" width="{{ cover_width }}" height="{{ cover_height }}" loading="lazy" decoding="async">
   </a>
   {% endif %}
   <div class="blog-list-content">
@@ -27,8 +40,8 @@ author_profile: true
     <p>{{ post.excerpt | strip_html | truncate: 220 }}</p>
     {% endif %}
     <p class="blog-item-links">
-      <a href="{{ post.url | relative_url }}">Read</a>
-      <a href="{{ post.url | relative_url }}#citation">Citation</a>
+      <a href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}">Read</a>
+      <a href="{{ post.url | relative_url }}#citation" aria-label="Citation for {{ post.title | escape }}">Citation</a>
     </p>
   </div>
 </article>

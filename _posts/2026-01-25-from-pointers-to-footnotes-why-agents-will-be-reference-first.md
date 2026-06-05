@@ -10,7 +10,7 @@ original_medium_url: "https://medium.com/@di-zhang-fdu/from-pointers-to-footnote
 ---
 
 <figure id="3fa5" class="graf graf--figure graf-after--h3">
-<img src="https://cdn-images-1.medium.com/max/800/0*2g_CMRAu43hMMy77" />
+<img src="/images/blog/reference-first-agents/cover.webp" alt="Reference-first agent systems illustration" width="474" height="381" loading="eager" decoding="async" fetchpriority="high">
 </figure>
 
 If you’ve built anything non-trivial with LLMs, you’ve felt the temptation: **just paste more context.** Another chunk. Another thread. Another doc. Another “final final” spec.

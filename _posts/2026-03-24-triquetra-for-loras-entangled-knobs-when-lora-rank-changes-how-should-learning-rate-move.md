@@ -4,6 +4,7 @@ title: "Triquetra for LoRA's entangled knobs: When LoRA rank changes, how should
 date: 2026-03-24
 categories: [Blog]
 tags: [macaron, lora, llm-reasoning]
+math: true
 imported_from: macaron
 excerpt: "Why LoRA learning-rate transfer across ranks is not universal? The key factor is how alpha scales with rank: different scaling rules lead to different rank-to-learning-rate transfer stories."
 original_url: "https://macaron.im/mindlab/research/triquetra-for-loras-entangled-knobs-when-lora-rank-changes-how-should-learning-rate-move"
@@ -11,7 +12,7 @@ original_site: "Macaron / MindLab"
 ---
 *Different choices of* `alpha(r)` *lead to different learning-rate transfer patterns.*
 
-![32d78e0a-5420-81a7-b1d7-eee22c1f468d-aee710b9.png](https://macaron-system.oss-ap-southeast-1.aliyuncs.com/image/web/notion-blog/32d78e0a-5420-81bf-9907-dfc8f6248b6d/32d78e0a-5420-81a7-b1d7-eee22c1f468d-aee710b9.png)
+<img src="/images/blog/triquetra-lora/alpha-scaling-overview.webp" alt="LoRA rank and learning-rate transfer overview" width="1200" height="1042" loading="eager" decoding="async" fetchpriority="high">
 
 LoRA [[1]](#references) exposes three knobs that are tied together: rank `r`, scale `alpha`, and learning rate `lr`. In practice, people usually change rank first because of memory limits, speed, or an intuition about adaptation capacity. Then they tune `lr` again.
 
@@ -30,7 +31,7 @@ In our experiments, four patterns stand out:
 - If `alpha ∝ sqrt(r)`, reusing the same order of learning rate is the most natural outcome from the simple theory, and it matches the rank-stable scaling highlighted by rsLoRA [[3]](#references).
 - In the harder `Qwen3-4B + MATH` transfer setting, `alpha ∝ sqrt(r)` also gives the best high-rank behavior overall.
 
-![32d78e0a-5420-8159-bf99-f12e35603ca4-38e1dacf.png](https://macaron-system.oss-ap-southeast-1.aliyuncs.com/image/web/notion-blog/32d78e0a-5420-81bf-9907-dfc8f6248b6d/32d78e0a-5420-8159-bf99-f12e35603ca4-38e1dacf.png)
+<img src="/images/blog/triquetra-lora/rank-lr-transfer-summary.webp" alt="Rank by learning-rate transfer summary" width="1200" height="364" loading="lazy" decoding="async">
 
 That last point matters. The real question is not whether one learning rate remains reusable everywhere. It is which scaling rule gives you a learning-rate region you can keep using as rank changes.
 
@@ -103,7 +104,7 @@ From there, the three common scaling rules split pretty quickly:
 
 If you plot that proxy over `rank × lr`, the three rules look obviously different:
 
-![32d78e0a-5420-8142-9e64-f5ec3ad85b80-c8d195fb.png](https://macaron-system.oss-ap-southeast-1.aliyuncs.com/image/web/notion-blog/32d78e0a-5420-81bf-9907-dfc8f6248b6d/32d78e0a-5420-8142-9e64-f5ec3ad85b80-c8d195fb.png)
+<img src="/images/blog/triquetra-lora/effective-step-proxy.webp" alt="Effective step-size proxy across LoRA ranks" width="1200" height="635" loading="lazy" decoding="async">
 
 Under fixed `alpha/r`, the surface tilts upward with rank, so the same learning rate becomes more aggressive as rank grows. Under constant `alpha`, it tilts the other way, so the same learning rate becomes more conservative. Under `alpha ∝ sqrt(r)`, it stays flat in the rank direction. That is why the simple theory points to it as the most stable same-order transfer rule.
 
@@ -121,7 +122,7 @@ We swept LoRA rank over `2, 4, 8, 16, 32, 64, 128, 256` and compared three scali
 
 Start with the heatmaps.
 
-![32d78e0a-5420-818f-bf3b-c86785ac4528-05be02af.png](https://macaron-system.oss-ap-southeast-1.aliyuncs.com/image/web/notion-blog/32d78e0a-5420-81bf-9907-dfc8f6248b6d/32d78e0a-5420-818f-bf3b-c86785ac4528-05be02af.png)
+<img src="/images/blog/triquetra-lora/ag-news-fixed-alpha-ratio.webp" alt="AG News fixed alpha over rank sweep" width="1200" height="426" loading="lazy" decoding="async">
 
 With fixed `alpha/r`, the best-learning-rate region and the cluster of strong cells slide downward as rank increases. That is exactly the directional shift the scaling argument suggests.
 
@@ -133,7 +134,7 @@ Each panel uses its own grayscale range, so brightness comparisons only make sen
 
 The curve view makes that easier to see.
 
-![32d78e0a-5420-812a-b275-d63432d57a01-2c40bd42.png](https://macaron-system.oss-ap-southeast-1.aliyuncs.com/image/web/notion-blog/32d78e0a-5420-81bf-9907-dfc8f6248b6d/32d78e0a-5420-812a-b275-d63432d57a01-2c40bd42.png)
+<img src="/images/blog/triquetra-lora/ag-news-constant-alpha.webp" alt="AG News constant alpha sweep" width="1200" height="401" loading="lazy" decoding="async">
 
 These rank curves tell the same story more clearly. Fixed `alpha/r` shifts the good part of the curve family toward smaller learning rates as rank grows. Constant `alpha` keeps the peak region much flatter. `alpha ∝ sqrt(r)` still preserves same-order reuse, though in this particular sweep constant `alpha` ends up slightly flatter in practice.
 
@@ -159,7 +160,7 @@ This sweep is more informative than a simple "everything wants a lower LR" story
 
 The heatmaps show the first part right away.
 
-![32d78e0a-5420-810d-84d7-e77676c7b95a-da815b87.png](https://macaron-system.oss-ap-southeast-1.aliyuncs.com/image/web/notion-blog/32d78e0a-5420-81bf-9907-dfc8f6248b6d/32d78e0a-5420-810d-84d7-e77676c7b95a-da815b87.png)
+<img src="/images/blog/triquetra-lora/qwen-math-fixed-alpha-ratio.webp" alt="Qwen3 MATH fixed alpha over rank sweep" width="1200" height="780" loading="lazy" decoding="async">
 
 Almost all of the useful area gets squeezed against the far-left side of the grid, around `7e-7`. But even when several protocols land on that same low learning rate, they do not behave the same way once rank gets large.
 
@@ -167,7 +168,7 @@ As with AG News, brightness comparisons only make sense within a panel. The inte
 
 The curve view makes the second point more obvious.
 
-![32d78e0a-5420-81a2-887f-df2b93b921dd-245682b0.png](https://macaron-system.oss-ap-southeast-1.aliyuncs.com/image/web/notion-blog/32d78e0a-5420-81bf-9907-dfc8f6248b6d/32d78e0a-5420-81a2-887f-df2b93b921dd-245682b0.png)
+<img src="/images/blog/triquetra-lora/qwen-math-constant-alpha.webp" alt="Qwen3 MATH constant alpha sweep" width="1200" height="687" loading="lazy" decoding="async">
 
 Constant `alpha` stays remarkably flat: across ranks, it repeatedly selects almost the same very small learning rate. But flatness alone is not enough. In this setting, it is not the strongest rule overall.
 

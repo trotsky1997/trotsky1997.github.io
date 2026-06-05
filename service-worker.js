@@ -14,10 +14,7 @@ const PRECACHE_URLS = [
   "{{ '/' | relative_url }}",
   "{{ '/assets/css/main.css' | relative_url }}" + ASSET_VERSION,
   "{{ '/assets/css/academicons.css' | relative_url }}" + ASSET_VERSION,
-  "{{ '/assets/js/main.min.js' | relative_url }}" + ASSET_VERSION,
-  "{{ '/assets/vendor/katex/katex.min.css' | relative_url }}" + ASSET_VERSION,
-  "{{ '/assets/vendor/katex/katex.min.js' | relative_url }}" + ASSET_VERSION,
-  "{{ '/assets/vendor/katex/contrib/auto-render.min.js' | relative_url }}" + ASSET_VERSION
+  "{{ '/assets/js/site.min.js' | relative_url }}" + ASSET_VERSION
 ];
 
 self.addEventListener("install", (event) => {

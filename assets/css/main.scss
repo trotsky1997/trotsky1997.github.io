@@ -42,7 +42,7 @@
 
 :root {
     --site-ink: #18212f;
-    --site-muted: #64748b;
+    --site-muted: #475569;
     --site-line: #e2e8f0;
     --site-soft: #f8fafc;
     --site-blue: #1d4ed8;
@@ -378,6 +378,10 @@
         width: 100%;
         order: 2;
         background: #f1f5f9;
+        picture {
+            display: block;
+            width: 100%;
+        }
         img {
             width: 100%;
             max-width: none;
@@ -790,6 +794,18 @@ h1:before, .anchor:before {
         background: #f0fdf4;
         color: #166534 !important;
     }
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 .blog-list-item {

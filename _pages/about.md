@@ -43,7 +43,7 @@ My current research is centered on the work I have pursued since 2025:
 
 Visit [Google Scholar](https://scholar.google.com/citations?user=vxAO250AAAAJ&hl=en) for the complete publication list.
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">NAACL 2025</div><img src='images/papers/llama-berry.png' alt="Llama-Berry" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">NAACL 2025</div><img src='images/papers/llama-berry.webp' alt="Llama-Berry" width="760" height="410" loading="lazy" decoding="async"></div></div>
 <div class='paper-box-text' markdown="1">
 
 **Llama-Berry: Pairwise Optimization for Olympiad-Level Mathematical Reasoning via o1-like Monte Carlo Tree Search**
@@ -56,7 +56,7 @@ Proceedings of NAACL-HLT 2025, Long Papers, pages 7315-7337.
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2025</div><img src='images/papers/critic-v.png' alt="Critic-V" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2025</div><img src='images/papers/critic-v.webp' alt="Critic-V" width="760" height="410" loading="lazy" decoding="async"></div></div>
 <div class='paper-box-text' markdown="1">
 
 **Critic-V: VLM Critics Help Catch VLM Errors in Multimodal Reasoning**
@@ -69,7 +69,7 @@ Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognitio
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2026</div><img src='images/papers/iag.png' alt="IAG" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2026</div><img src='images/papers/iag.webp' alt="IAG" width="760" height="410" loading="lazy" decoding="async"></div></div>
 <div class='paper-box-text' markdown="1">
 
 **IAG: Input-Aware Backdoor Attack on VLM-Based Visual Grounding**
@@ -82,7 +82,7 @@ Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognitio
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">AAAI 2025</div><img src='images/papers/chemvlm.png' alt="ChemVLM" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">AAAI 2025</div><img src='images/papers/chemvlm.webp' alt="ChemVLM" width="760" height="410" loading="lazy" decoding="async"></div></div>
 <div class='paper-box-text' markdown="1">
 
 **ChemVLM: Exploring the Power of Multimodal Large Language Models in Chemistry Area**
@@ -95,7 +95,7 @@ Proceedings of the AAAI Conference on Artificial Intelligence, 39(1), 415-423, 2
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">arXiv 2024</div><img src='images/papers/mctsr.png' alt="MCTSr" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">arXiv 2024</div><img src='images/papers/mctsr.webp' alt="MCTSr" width="760" height="410" loading="lazy" decoding="async"></div></div>
 <div class='paper-box-text' markdown="1">
 
 **Accessing GPT-4 Level Mathematical Olympiad Solutions via Monte Carlo Tree Self-Refine with Llama-3 8B**
@@ -108,7 +108,7 @@ arXiv preprint arXiv:2406.07394, 2024.
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">TKDE 2026</div><img src='images/papers/molreflect.png' alt="MolReflect" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">TKDE 2026</div><img src='images/papers/molreflect.webp' alt="MolReflect" width="760" height="410" loading="lazy" decoding="async"></div></div>
 <div class='paper-box-text' markdown="1">
 
 **MolReflect: Towards In-Context Fine-Grained Alignments Between Molecules and Texts**

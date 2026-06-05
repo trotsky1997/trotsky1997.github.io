@@ -10,7 +10,7 @@ original_medium_url: "https://medium.com/@di-zhang-fdu/harness-engineering-build
 ---
 
 <figure id="bb20" class="graf graf--figure graf-after--h3">
-<img src="https://cdn-images-1.medium.com/max/800/0*pr8VxlWd2iGaHwba.jpg" />
+<img src="/images/blog/harness-engineering/cover.webp" alt="Harness engineering illustration" width="800" height="556" loading="eager" decoding="async" fetchpriority="high">
 <figcaption><a href="https://uniat.edu.mx/curiosidades-ghost-in-the-shell/">https://uniat.edu.mx/curiosidades-ghost-in-the-shell/</a></figcaption>
 </figure>
 

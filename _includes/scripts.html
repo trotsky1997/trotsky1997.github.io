@@ -1,58 +1,5 @@
 {% assign asset_version = site.time | date: "%Y%m%d%H%M%S" %}
-<script src="{{ '/assets/js/main.min.js' | relative_url }}?v={{ asset_version }}" defer></script>
-<script>
-  window.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll('a[href^="http"]').forEach(function (link) {
-      if (link.hostname && link.hostname !== window.location.hostname) {
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-      }
-    });
-
-    document.querySelectorAll("img").forEach(function (img) {
-      if (!img.hasAttribute("loading")) img.loading = "lazy";
-      if (!img.hasAttribute("decoding")) img.decoding = "async";
-    });
-
-    document.querySelectorAll(".share-link-button").forEach(function (button) {
-      button.addEventListener("click", function () {
-        var url = button.getAttribute("data-share-url") || window.location.href;
-        var label = button.querySelector("span");
-        var originalLabel = label ? label.textContent : button.textContent;
-        var markCopied = function () {
-          button.classList.add("copied");
-          if (label) label.textContent = " Copied";
-          window.setTimeout(function () {
-            button.classList.remove("copied");
-            if (label) label.textContent = originalLabel;
-          }, 1600);
-        };
-
-        if (navigator.clipboard && window.isSecureContext) {
-          navigator.clipboard.writeText(url).then(markCopied).catch(function () {});
-        } else {
-          var input = document.createElement("input");
-          input.value = url;
-          input.setAttribute("readonly", "");
-          input.style.position = "absolute";
-          input.style.left = "-9999px";
-          document.body.appendChild(input);
-          input.select();
-          try {
-            if (document.execCommand("copy")) markCopied();
-          } catch (error) {}
-          document.body.removeChild(input);
-        }
-      });
-    });
-  });
-
-  if ("serviceWorker" in navigator && window.location.protocol === "https:") {
-    window.addEventListener("load", function () {
-      navigator.serviceWorker.register("{{ '/service-worker.js' | relative_url }}").catch(function () {});
-    });
-  }
-</script>
+<script src="{{ '/assets/js/site.min.js' | relative_url }}?v={{ asset_version }}" defer></script>
 
 {% include analytics.html %}
 {% include fetch_google_scholar_stats.html %}

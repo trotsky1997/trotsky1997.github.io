@@ -10,7 +10,7 @@ original_medium_url: "https://medium.com/@di-zhang-fdu/agent-experience-first-de
 ---
 
 <figure id="ffb8" class="graf graf--figure graf-after--h3">
-<img src="https://cdn-images-1.medium.com/max/800/0*_Vp8lzKscNmrfdEK" />
+<img src="/images/blog/agent-experience-first-design/cover.webp" alt="Agent experience first design illustration" width="800" height="533" loading="eager" decoding="async" fetchpriority="high">
 <figcaption>Source: theverge.com</figcaption>
 </figure>
 

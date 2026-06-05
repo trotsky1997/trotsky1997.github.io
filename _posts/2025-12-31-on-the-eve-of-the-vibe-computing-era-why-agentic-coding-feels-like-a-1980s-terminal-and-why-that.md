@@ -10,7 +10,7 @@ original_medium_url: "https://medium.com/@di-zhang-fdu/on-the-eve-of-the-birth-o
 ---
 
 <figure id="0583" class="graf graf--figure graf-after--h3">
-<img src="https://cdn-images-1.medium.com/max/800/0*IK3C6fUanwDMK6gF.jpg" />
+<img src="/images/blog/vibe-computing-era/cover.webp" alt="Agentic coding terminal illustration" width="800" height="600" loading="eager" decoding="async" fetchpriority="high">
 <figcaption>Apple-I (source: apple1.fr)</figcaption>
 </figure>
 
