@@ -13,6 +13,38 @@
       if (!img.hasAttribute("loading")) img.loading = "lazy";
       if (!img.hasAttribute("decoding")) img.decoding = "async";
     });
+
+    document.querySelectorAll(".share-link-button").forEach(function (button) {
+      button.addEventListener("click", function () {
+        var url = button.getAttribute("data-share-url") || window.location.href;
+        var label = button.querySelector("span");
+        var originalLabel = label ? label.textContent : button.textContent;
+        var markCopied = function () {
+          button.classList.add("copied");
+          if (label) label.textContent = " Copied";
+          window.setTimeout(function () {
+            button.classList.remove("copied");
+            if (label) label.textContent = originalLabel;
+          }, 1600);
+        };
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(url).then(markCopied).catch(function () {});
+        } else {
+          var input = document.createElement("input");
+          input.value = url;
+          input.setAttribute("readonly", "");
+          input.style.position = "absolute";
+          input.style.left = "-9999px";
+          document.body.appendChild(input);
+          input.select();
+          try {
+            if (document.execCommand("copy")) markCopied();
+          } catch (error) {}
+          document.body.removeChild(input);
+        }
+      });
+    });
   });
 
   if ("serviceWorker" in navigator && window.location.protocol === "https:") {

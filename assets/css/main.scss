@@ -763,6 +763,35 @@ h1:before, .anchor:before {
     }
 }
 
+.page__inner-wrap > .page__share {
+    max-width: 760px;
+    margin-top: 2rem;
+}
+
+.page__share {
+    .btn {
+        margin-right: 0.28rem;
+        margin-bottom: 0.42rem;
+        border-radius: 6px;
+        font-size: 0.78rem;
+        line-height: 1.35;
+    }
+
+    .btn--weibo {
+        background-color: #e6162d;
+
+        &:hover {
+            background-color: #b51023;
+        }
+    }
+
+    .share-link-button.copied {
+        border-color: #86efac !important;
+        background: #f0fdf4;
+        color: #166534 !important;
+    }
+}
+
 .blog-list-item {
     display: grid;
     grid-template-columns: 1fr;

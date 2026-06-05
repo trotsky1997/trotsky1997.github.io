@@ -23,6 +23,9 @@ layout: compress
           <section class="page__content" itemprop="text">
             {{ content }}
           </section>
+          {% unless page.share == false %}
+            {% include social-share.html %}
+          {% endunless %}
         </div>
       </article>
     </div>
