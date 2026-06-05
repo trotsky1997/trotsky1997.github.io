@@ -91,6 +91,17 @@
     height: auto;
   }
 
+  picture {
+    display: block;
+    width: 75px;
+    height: 75px;
+
+    @include breakpoint($large) {
+      width: 100%;
+      height: auto;
+    }
+  }
+
   img {
     width: 75px;
     height: 75px;

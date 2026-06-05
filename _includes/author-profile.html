@@ -8,7 +8,7 @@
     {% assign avatar_webp = author.avatar | replace: ".png", ".webp" %}
     <picture>
       <source srcset="{{ avatar_webp | relative_url }}" type="image/webp">
-      <img src="{{ author.avatar | relative_url }}" class="author__avatar" alt="{{ author.name }}" width="160" height="160" loading="eager" decoding="async" fetchpriority="high">
+      <img src="{{ author.avatar | relative_url }}" alt="{{ author.name }}" width="160" height="160" loading="eager" decoding="async" fetchpriority="high">
     </picture>
   </div>
 
