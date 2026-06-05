@@ -9,13 +9,6 @@ redirect_from:
   - /about.html
 ---
 
-{% if site.google_scholar_stats_use_cdn %}
-{% assign gsDataBaseUrl = "https://cdn.jsdelivr.net/gh/" | append: site.repository | append: "@" %}
-{% else %}
-{% assign gsDataBaseUrl = "https://raw.githubusercontent.com/" | append: site.repository | append: "/" %}
-{% endif %}
-{% assign url = gsDataBaseUrl | append: "google-scholar-stats/gs_data_shieldsio.json" %}
-
 <span class='anchor' id='about-me'></span>
 
 # Di Zhang
@@ -25,7 +18,7 @@ I am a PhD candidate at Fudan University, working on chemical AI, multimodal rea
 I am a Research Resident and Head of Agent Model at MindLab starting in 2026. Previously, I interned at NVIDIA Research from 2025 to 2026 and Shanghai AI Lab from 2023 to 2025, worked full-time as a machine learning developer at Alibaba from 2022 to 2023, and received my Master of Engineering from the USTC Robotics Lab from 2019 to 2022. I also interned at Ant Group and MIT Han Lab.
 
 <div class="profile-links">
-  <a href="https://raw.githubusercontent.com/trotsky1997/trotsky1997/main/FDU-ZhangDi-CV-2026.pdf">CV</a>
+  <a href="{{ site.author.cv | relative_url }}">CV</a>
   <a href="mailto:di.zhang@ustc.edu">Email</a>
   <a href="https://scholar.google.com/citations?user=vxAO250AAAAJ&hl=en">Google Scholar</a>
   <a href="https://www.linkedin.com/in/di-zhang-740238330/?locale=en">LinkedIn</a>

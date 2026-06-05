@@ -6,7 +6,6 @@ keywords                 : "Di Zhang, 张迪, Fudan University, LLM reasoning, s
 url                      : "https://trotsky1997.github.io"
 baseurl                  : ""
 repository               : "trotsky1997/trotsky1997.github.io"
-google_scholar_stats_use_cdn : true
 
 # Google analytics
 google_analytics_id      :
@@ -25,7 +24,7 @@ author:
   employer         : "Fudan University"
   googlescholar    : "https://scholar.google.com/citations?user=vxAO250AAAAJ&hl=en"
   email            : "di.zhang@ustc.edu"
-  cv               : "https://raw.githubusercontent.com/trotsky1997/trotsky1997/main/FDU-ZhangDi-CV-2026.pdf"
+  cv               : "/files/FDU-ZhangDi-CV-2026.pdf"
   github           :
   twitter          : "di_zhang_fdu"
   huggingface      : "https://huggingface.co/di-zhang-fdu"

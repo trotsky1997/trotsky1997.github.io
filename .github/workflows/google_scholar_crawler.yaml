@@ -4,29 +4,23 @@ permissions:
   contents: write
 
 on: 
- page_build: 
  schedule:
   - cron:  '0 8 * * *'
+ workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Install Reqs
-      run: |
-        sudo apt-get install python3-setuptools
+    - uses: actions/checkout@v4
     - name: Run
       run: |
-        cd ./google_scholar_crawler
-        pip3 install -r requirements.txt
-        python3 main.py
-        cd ./results
-        git init
+        python3 -m pip install -r google_scholar_crawler/requirements.txt
+        RESULTS_DIR=google-scholar-stats python3 google_scholar_crawler/main.py
         git config --local user.name "${GITHUB_ACTOR}"
-        export remote_repo="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
-        git add *.json
-        git commit -m "Updated Citation Data"
-        git push "${remote_repo}" HEAD:google-scholar-stats --force
+        git config --local user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        git add google-scholar-stats/*.json
+        git diff --cached --quiet || git commit -m "Update Google Scholar citation data"
+        git push origin HEAD:main
       env: 
         GOOGLE_SCHOLAR_ID: ${{ secrets.GOOGLE_SCHOLAR_ID || 'vxAO250AAAAJ' }}

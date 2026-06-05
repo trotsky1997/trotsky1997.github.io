@@ -1,10 +1,10 @@
 <script>
   window.addEventListener("DOMContentLoaded", function () {
-    var cdnBaseUrl = "https://cdn.jsdelivr.net/gh/{{ site.repository }}@";
-    var originBaseUrl = "https://raw.githubusercontent.com/{{ site.repository }}/";
-    var statsPath = "google-scholar-stats/gs_data.json";
-    var primaryUrl = {% if site.google_scholar_stats_use_cdn %}cdnBaseUrl{% else %}originBaseUrl{% endif %} + statsPath;
-    var fallbackUrl = {% if site.google_scholar_stats_use_cdn %}originBaseUrl{% else %}cdnBaseUrl{% endif %} + statsPath;
+    var totalCitationElement = document.getElementById("total_cit");
+    var citationElements = document.getElementsByClassName("show_paper_citations");
+    if (!totalCitationElement && citationElements.length === 0) return;
+
+    var statsUrl = "{{ '/google-scholar-stats/gs_data.json' | relative_url }}";
 
     function fetchJson(url) {
       return fetch(url, { cache: "force-cache" }).then(function (response) {
@@ -14,12 +14,11 @@
     }
 
     function renderCitationStats(data) {
-      var totalCitationElement = document.getElementById("total_cit");
       if (totalCitationElement && data.citedby) {
         totalCitationElement.textContent = data.citedby;
       }
 
-      Array.prototype.forEach.call(document.getElementsByClassName("show_paper_citations"), function (element) {
+      Array.prototype.forEach.call(citationElements, function (element) {
         var paperId = element.getAttribute("data");
         if (data.publications && data.publications[paperId]) {
           element.textContent = "| Citations: " + data.publications[paperId].num_citations;
@@ -27,8 +26,7 @@
       });
     }
 
-    fetchJson(primaryUrl)
-      .catch(function () { return fetchJson(fallbackUrl); })
+    fetchJson(statsUrl)
       .then(renderCitationStats)
       .catch(function () {});
   });
