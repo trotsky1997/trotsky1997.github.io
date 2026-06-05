@@ -14,6 +14,12 @@
       if (!img.hasAttribute("decoding")) img.decoding = "async";
     });
   });
+
+  if ("serviceWorker" in navigator && window.location.protocol === "https:") {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("{{ '/service-worker.js' | relative_url }}").catch(function () {});
+    });
+  }
 </script>
 
 {% include analytics.html %}

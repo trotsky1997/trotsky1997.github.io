@@ -51,3 +51,22 @@ The system SHALL serve critical resources needed for core page rendering or prof
 - **WHEN** a page or navigation item links to the CV
 - **THEN** the CV URL uses a site-relative PDF path
 
+### Requirement: Client cache keeps static assets reusable without pinning stale pages
+The system SHALL provide a client-side cache strategy that reuses same-origin static assets while allowing page HTML and citation data to refresh from the network first.
+
+#### Scenario: Installing the site cache
+- **WHEN** a browser supports service workers and loads the production site over HTTPS
+- **THEN** the site registers a root service worker
+- **AND** the service worker precaches core CSS and JavaScript resources using the current build version
+
+#### Scenario: Activating a new build
+- **WHEN** a new service worker activates
+- **THEN** cache buckets from earlier build versions are removed
+
+#### Scenario: Loading navigable pages
+- **WHEN** a page navigation request is made
+- **THEN** the service worker attempts the network response before falling back to a cached page response
+
+#### Scenario: Loading static assets
+- **WHEN** a same-origin asset under assets, images, or files is requested
+- **THEN** the service worker may serve an existing cached response while revalidating the asset in the background

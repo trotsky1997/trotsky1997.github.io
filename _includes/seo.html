@@ -36,6 +36,9 @@
 <meta name="author" content="{{ site.author.name }}">
 {% if seo_keywords and seo_keywords != "" %}<meta name="keywords" content="{{ seo_keywords }}">{% endif %}
 <meta name="robots" content="{{ seo_robots }}">
+{% if site.google_site_verification %}<meta name="google-site-verification" content="{{ site.google_site_verification }}">{% endif %}
+{% if site.bing_site_verification %}<meta name="msvalidate.01" content="{{ site.bing_site_verification }}">{% endif %}
+{% if site.baidu_site_verification %}<meta name="baidu-site-verification" content="{{ site.baidu_site_verification }}">{% endif %}
 <link rel="canonical" href="{{ seo_canonical }}">
 <link rel="alternate" hreflang="en" href="{{ seo_canonical }}">
 
