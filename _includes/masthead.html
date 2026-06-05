@@ -6,7 +6,15 @@
         <ul class="visible-links">
           <li class="masthead__menu-item masthead__menu-item--lg masthead__menu-home-item"><a href="{{ '/' | relative_url }}">Homepage</a></li>
           {% for link in site.data.navigation.main %}
-            <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
+            {% unless page.url == "/" and link.url == "/blog/" %}
+              {% assign nav_title = link.title %}
+              {% assign nav_url = link.url %}
+              {% if page.url == "/" and link.url == "/#about-me" %}
+                {% assign nav_title = "Blog" %}
+                {% assign nav_url = "/blog/" %}
+              {% endif %}
+              <li class="masthead__menu-item"><a href="{{ domain }}{{ nav_url }}">{{ nav_title }}</a></li>
+            {% endunless %}
           {% endfor %}
         </ul>
         <ul id="site-nav-hidden-links" class="hidden-links hidden"></ul>
