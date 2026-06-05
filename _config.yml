@@ -1,8 +1,8 @@
 # Site Settings
-title                    : "Zhang Di"
+title                    : "Di Zhang"
 tagline                  : "LLM Reasoning, Scientific Intelligence, and Agentic Learning"
-description              : "Zhang Di is a PhD candidate at Fudan University working on LLM reasoning, scientific intelligence, agentic learning, and foundation models for scientific discovery."
-keywords                 : "Zhang Di, Di Zhang, Fudan University, LLM reasoning, scientific intelligence, agentic learning, chemical AI, multimodal reasoning, test-time scaling, reinforcement learning, scientific discovery"
+description              : "Di Zhang is a PhD candidate at Fudan University working on LLM reasoning, scientific intelligence, agentic learning, and foundation models for scientific discovery."
+keywords                 : "Di Zhang, 张迪, Fudan University, LLM reasoning, scientific intelligence, agentic learning, chemical AI, multimodal reasoning, test-time scaling, reinforcement learning, scientific discovery"
 url                      : "https://trotsky1997.github.io"
 baseurl                  : ""
 repository               : "trotsky1997/trotsky1997.github.io"
@@ -18,7 +18,7 @@ baidu_site_verification  :
 
 # Site Author
 author:
-  name             : "Zhang Di"
+  name             : "Di Zhang"
   avatar           : "/images/avatar.png"
   bio              : "PhD Candidate at Fudan University"
   location         : "Shanghai, China"

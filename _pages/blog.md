@@ -1,8 +1,8 @@
 ---
 permalink: /blog/
 title: "Blog"
-excerpt: "Research notes and essays by Zhang Di on agentic coding, LLM reasoning, Bayesian optimization, LoRA scaling, and AI systems."
-keywords: "Zhang Di blog, LLM reasoning, agentic coding, Bayesian optimization, LoRA, AI systems"
+excerpt: "Research notes and essays by Di Zhang on agentic coding, LLM reasoning, Bayesian optimization, LoRA scaling, and AI systems."
+keywords: "Di Zhang blog, 张迪, LLM reasoning, agentic coding, Bayesian optimization, LoRA, AI systems"
 author_profile: true
 ---
 

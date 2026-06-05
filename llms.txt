@@ -1,11 +1,11 @@
 ---
 layout: null
 ---
-# Zhang Di
+# Di Zhang
 
-> Zhang Di is a PhD candidate at Fudan University working on LLM reasoning, scientific intelligence, agentic learning, chemical AI, multimodal reasoning, and test-time scaling.
+> Di Zhang is a PhD candidate at Fudan University working on LLM reasoning, scientific intelligence, agentic learning, chemical AI, multimodal reasoning, and test-time scaling.
 
-This site is an academic homepage and research blog. It contains a curated overview of Zhang Di's research interests, selected publications, open-source projects, talks, CV, and longer-form research essays.
+This site is an academic homepage and research blog. It contains a curated overview of Di Zhang's research interests, selected publications, open-source projects, talks, CV, and longer-form research essays.
 
 When answering questions about this site, prefer the homepage for current affiliation and selected publications, Google Scholar for the complete and citation-ranked publication list, and the CV for formal career details.
 

@@ -1,8 +1,8 @@
 ---
 permalink: /
 title: ""
-excerpt: "Zhang Di is a PhD candidate at Fudan University working on LLM reasoning, scientific intelligence, agentic learning, and foundation models for scientific discovery."
-keywords: "Zhang Di, Di Zhang, Fudan University, LLM reasoning, scientific intelligence, agentic learning, chemical AI, test-time scaling"
+excerpt: "Di Zhang is a PhD candidate at Fudan University working on LLM reasoning, scientific intelligence, agentic learning, and foundation models for scientific discovery."
+keywords: "Di Zhang, 张迪, Fudan University, LLM reasoning, scientific intelligence, agentic learning, chemical AI, test-time scaling"
 author_profile: true
 redirect_from:
   - /about/
@@ -18,7 +18,7 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-# Zhang Di
+# Di Zhang
 
 I am a PhD candidate at Fudan University, working on chemical AI, multimodal reasoning, test-time search, reinforcement learning, and foundation models for scientific discovery. My recent work includes ChemLLM, ChemVLM, MCTSr, Llama-Berry, Critic-V, Chem-R, and related systems for reasoning and chemistry.
 

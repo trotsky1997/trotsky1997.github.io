@@ -1,4 +1,4 @@
-# Zhang Di Academic Homepage
+# Di Zhang Academic Homepage
 
 This repository powers <https://trotsky1997.github.io/>.
 

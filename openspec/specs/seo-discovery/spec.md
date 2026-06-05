@@ -8,7 +8,7 @@ The system SHALL generate concise, page-specific `<title>` and meta description 
 
 #### Scenario: Rendering the homepage
 - **WHEN** the homepage is generated
-- **THEN** the title identifies Zhang Di and the research focus without embedding the full site description
+- **THEN** the title identifies Di Zhang and the research focus without embedding the full site description
 
 #### Scenario: Rendering an inner page
 - **WHEN** a non-homepage page is generated
