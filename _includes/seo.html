@@ -28,8 +28,25 @@
   {% assign seo_image_url = seo_image | absolute_url %}
 {% endif %}
 {% assign seo_twitter = site.author.twitter | replace: "@", "" %}
-{% assign seo_keywords = page.keywords | default: site.keywords | join: ", " | normalize_whitespace | escape_once %}
+{% assign seo_keyword_source = page.keywords | default: page.tags | default: site.keywords %}
+{% assign seo_keywords = seo_keyword_source | join: ", " | normalize_whitespace | escape_once %}
+{% assign seo_keywords_json = seo_keyword_source | join: ", " | normalize_whitespace %}
+{% assign seo_word_count = content | strip_html | normalize_whitespace | number_of_words %}
 {% assign seo_robots = page.robots | default: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" %}
+{% assign seo_primary_type = "WebPage" %}
+{% if page.layout == "post" %}
+  {% assign seo_primary_type = "BlogPosting" %}
+{% elsif page.url == "/" %}
+  {% assign seo_primary_type = "Person" %}
+{% elsif page.url == "/blog/" %}
+  {% assign seo_primary_type = "Blog" %}
+{% elsif page.url == "/projects/" or page.url == "/talks/" %}
+  {% assign seo_primary_type = "CollectionPage" %}
+{% endif %}
+{% if site.author.github %}{% assign seo_github_url = "https://github.com/" | append: site.author.github %}{% endif %}
+{% if site.author.linkedin %}{% assign seo_linkedin_url = "https://www.linkedin.com/in/" | append: site.author.linkedin | append: "/" %}{% endif %}
+{% if seo_twitter %}{% assign seo_x_url = "https://x.com/" | append: seo_twitter %}{% endif %}
+{% capture seo_same_as_json %}{% assign seo_same_as_count = 0 %}{% if site.author.googlescholar %}{{ site.author.googlescholar | jsonify }}{% assign seo_same_as_count = seo_same_as_count | plus: 1 %}{% endif %}{% if seo_github_url %}{% if seo_same_as_count > 0 %},{% endif %}{{ seo_github_url | jsonify }}{% assign seo_same_as_count = seo_same_as_count | plus: 1 %}{% endif %}{% if site.author.huggingface %}{% if seo_same_as_count > 0 %},{% endif %}{{ site.author.huggingface | jsonify }}{% assign seo_same_as_count = seo_same_as_count | plus: 1 %}{% endif %}{% if site.author.medium %}{% if seo_same_as_count > 0 %},{% endif %}{{ site.author.medium | jsonify }}{% assign seo_same_as_count = seo_same_as_count | plus: 1 %}{% endif %}{% if seo_linkedin_url %}{% if seo_same_as_count > 0 %},{% endif %}{{ seo_linkedin_url | jsonify }}{% assign seo_same_as_count = seo_same_as_count | plus: 1 %}{% endif %}{% if seo_x_url %}{% if seo_same_as_count > 0 %},{% endif %}{{ seo_x_url | jsonify }}{% endif %}{% endcapture %}
 
 <title>{{ seo_page_title }}</title>
 <meta name="description" content="{{ seo_description }}">
@@ -72,11 +89,13 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "{% if page.layout == 'post' %}BlogPosting{% elsif page.url == '/' %}Person{% else %}WebPage{% endif %}",
+  "@type": {{ seo_primary_type | jsonify }},
+  "@id": "{{ seo_canonical }}#primary",
   "name": {{ seo_title | jsonify }},
   "headline": {{ seo_title | jsonify }},
   "description": {{ seo_description | jsonify }},
   "url": {{ seo_canonical | jsonify }},
+  "inLanguage": "en",
   "image": {{ seo_image_url | jsonify }}{% if page.layout == "post" %},
   "mainEntityOfPage": {
     "@type": "WebPage",
@@ -84,37 +103,90 @@
   },
   "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
   "dateModified": {{ page.last_modified_at | default: page.date | date_to_xmlschema | jsonify }},
+  "keywords": {{ seo_keywords_json | jsonify }},
+  "wordCount": {{ seo_word_count | jsonify }},
+  "articleSection": {{ page.categories | first | default: "Blog" | jsonify }},
+  "isPartOf": {
+    "@type": "Blog",
+    "@id": "{{ seo_site_url }}/blog/#blog",
+    "name": "Di Zhang Blog",
+    "url": "{{ seo_site_url }}/blog/"
+  },
   "author": {
     "@type": "Person",
+    "@id": "{{ seo_site_url }}/#person",
     "name": {{ site.author.name | jsonify }},
     "url": {{ seo_site_url | jsonify }},
-    "sameAs": [
-      {{ site.author.googlescholar | jsonify }},
-      "https://github.com/trotsky1997",
-      {{ site.author.huggingface | jsonify }},
-      "https://www.linkedin.com/in/{{ site.author.linkedin }}/",
-      "https://x.com/{{ site.author.twitter }}"
-    ]
+    "sameAs": [{{ seo_same_as_json | strip }}]
   },
   "publisher": {
     "@type": "Person",
+    "@id": "{{ seo_site_url }}/#person",
     "name": {{ site.author.name | jsonify }},
     "url": {{ seo_site_url | jsonify }}
   }{% elsif page.url == "/" %},
+  "alternateName": "张迪",
   "jobTitle": {{ site.author.bio | jsonify }},
+  "worksFor": {
+    "@type": "Organization",
+    "name": {{ site.author.employer | jsonify }}
+  },
   "affiliation": {
     "@type": "Organization",
     "name": {{ site.author.employer | jsonify }}
   },
   "email": {{ site.author.email | prepend: "mailto:" | jsonify }},
-  "sameAs": [
-    {{ site.author.googlescholar | jsonify }},
-    "https://github.com/trotsky1997",
-    {{ site.author.huggingface | jsonify }},
-    {{ site.author.medium | jsonify }},
-    "https://www.linkedin.com/in/{{ site.author.linkedin }}/",
-    "https://x.com/{{ site.author.twitter }}"
-  ]{% else %},
+  "knowsAbout": [
+    "LLM reasoning",
+    "scientific intelligence",
+    "agentic learning",
+    "test-time scaling",
+    "reinforcement learning",
+    "scientific discovery"
+  ],
+  "sameAs": [{{ seo_same_as_json | strip }}]{% elsif page.url == "/blog/" %},
+  "publisher": {
+    "@type": "Person",
+    "@id": "{{ seo_site_url }}/#person",
+    "name": {{ site.author.name | jsonify }},
+    "url": {{ seo_site_url | jsonify }}
+  },
+  "blogPost": [
+    {% for post in site.posts limit: 10 %}
+    {
+      "@type": "BlogPosting",
+      "headline": {{ post.title | jsonify }},
+      "url": {{ post.url | absolute_url | jsonify }},
+      "datePublished": {{ post.date | date_to_xmlschema | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]{% elsif seo_primary_type == "CollectionPage" %},
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": {{ site.title | jsonify }},
+    "url": {{ seo_site_url | jsonify }}
+  }{% if content contains '<h3><a href="' %},
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {% assign seo_collection_items = content | split: '<h3><a href="' %}
+      {% for item in seo_collection_items offset: 1 limit: 12 %}
+        {% assign seo_item_url = item | split: '"' | first %}
+        {% assign seo_item_name = item | split: '>' | slice: 1, 99 | join: '>' | split: '</a>' | first | strip_html | strip %}
+        {% if seo_item_url contains "://" %}
+          {% assign seo_item_full_url = seo_item_url %}
+        {% else %}
+          {% assign seo_item_full_url = seo_item_url | absolute_url %}
+        {% endif %}
+      {
+        "@type": "ListItem",
+        "position": {{ forloop.index }},
+        "name": {{ seo_item_name | jsonify }},
+        "url": {{ seo_item_full_url | jsonify }}
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  }{% endif %}{% else %},
   "isPartOf": {
     "@type": "WebSite",
     "name": {{ site.title | jsonify }},
@@ -134,9 +206,12 @@
       "description": {{ site.description | jsonify }},
       "publisher": {
         "@type": "Person",
+        "@id": "{{ seo_site_url }}/#person",
         "name": {{ site.author.name | jsonify }},
-        "url": {{ seo_site_url | jsonify }}
-      }
+        "url": {{ seo_site_url | jsonify }},
+        "sameAs": [{{ seo_same_as_json | strip }}]
+      },
+      "inLanguage": "en"
     }{% unless page.url == "/" %},
     {
       "@type": "BreadcrumbList",

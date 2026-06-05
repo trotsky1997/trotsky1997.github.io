@@ -2,6 +2,7 @@
 permalink: /projects/
 title: "Projects"
 excerpt: "Open-source models, datasets, and tools."
+keywords: "Di Zhang projects, GitHub, HuggingFace, open-source models, datasets, LLM reasoning, scientific intelligence"
 author_profile: true
 ---
 

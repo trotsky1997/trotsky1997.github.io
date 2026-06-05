@@ -2,6 +2,7 @@
 permalink: /talks/
 title: "Talks"
 excerpt: "Selected talks, seminars, and public presentations."
+keywords: "Di Zhang talks, Error-Free Linear Attention, invited talks, LLM reasoning, efficient foundation models"
 author_profile: true
 ---
 
