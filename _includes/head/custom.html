@@ -7,23 +7,30 @@
 <meta name="msapplication-TileImage" content="{{ '/images/mstile-144x144.png?v=M44lzPylqQ' | relative_url }}">
 <meta name="msapplication-config" content="{{ '/images/browserconfig.xml?v=M44lzPylqQ' | relative_url }}">
 <meta name="theme-color" content="#ffffff">
-<link rel="stylesheet" href="{{ '/assets/css/academicons.css' | relative_url }}"/>
-{% assign mathjax_script = "/assets/js/mathjax/tex-chtml.js" | relative_url %}
-<link rel="preload" href="{{ mathjax_script }}" as="script">
+{% assign asset_version = site.time | date: "%Y%m%d%H%M%S" %}
+{% assign katex_css = "/assets/vendor/katex/katex.min.css" | relative_url %}
+{% assign katex_script = "/assets/vendor/katex/katex.min.js" | relative_url %}
+{% assign katex_auto_render = "/assets/vendor/katex/contrib/auto-render.min.js" | relative_url %}
+<link rel="stylesheet" href="{{ '/assets/css/academicons.css' | relative_url }}?v={{ asset_version }}">
+<link rel="stylesheet" href="{{ katex_css }}?v={{ asset_version }}">
+<link rel="preload" href="{{ katex_script }}?v={{ asset_version }}" as="script">
 
 <script>
-  window.MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      displayMath: [['$$', '$$'], ['\\[', '\\]']],
-      processEscapes: true,
-      tags: 'ams'
-    },
-    options: {
-      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  };
+  window.addEventListener("DOMContentLoaded", function () {
+    if (!window.renderMathInElement) return;
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "\\[", right: "\\]", display: true },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "$", right: "$", display: false }
+      ],
+      ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"],
+      throwOnError: false
+    });
+  });
 </script>
-<script defer src="{{ mathjax_script }}"></script>
+<script defer src="{{ katex_script }}?v={{ asset_version }}"></script>
+<script defer src="{{ katex_auto_render }}?v={{ asset_version }}"></script>
 
 <!-- end custom head snippets -->
