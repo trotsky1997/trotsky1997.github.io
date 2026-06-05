@@ -24,22 +24,22 @@
         <li><div style="white-space: normal; margin-bottom: 1em;">{{ site.description }}</div></li>
       {% endif %}
       {% if author.location %}
-        <li>{{ author.location }}</li>
+        <li><span class="author__emoji" aria-hidden="true">📍</span>{{ author.location }}</li>
       {% endif %}
       {% if author.employer %}
-        <li>{{ author.employer }}</li>
+        <li><span class="author__emoji" aria-hidden="true">🏫</span>{{ author.employer }}</li>
       {% endif %}
       {% if author.uri %}
-        <li><a href="{{ author.uri }}">Website</a></li>
+        <li><a href="{{ author.uri }}"><span class="author__emoji" aria-hidden="true">🌐</span>Website</a></li>
       {% endif %}
       {% if author.email %}
-        <li><a href="mailto:{{ author.email }}">Email</a></li>
+        <li><a href="mailto:{{ author.email }}"><span class="author__emoji" aria-hidden="true">✉️</span>Email</a></li>
       {% endif %}
       {% if author.cv %}
-        <li><a href="{{ author.cv }}">CV</a></li>
+        <li><a href="{{ author.cv }}"><span class="author__emoji" aria-hidden="true">📄</span>CV</a></li>
       {% endif %}
       {% if author.blog %}
-        <li><a href="{{ author.blog | relative_url }}">Blog</a></li>
+        <li><a href="{{ author.blog | relative_url }}"><span class="author__emoji" aria-hidden="true">📝</span>Blog</a></li>
       {% endif %}
       {% if author.keybase %}
         <li><a href="https://keybase.io/{{ author.keybase }}">Keybase</a></li>
@@ -48,7 +48,7 @@
         <li><a href="{{ author.researchgate }}">ResearchGate</a></li>
       {% endif %}
       {% if author.twitter %}
-        <li><a href="https://twitter.com/{{ author.twitter }}">Twitter</a></li>
+        <li><a href="https://twitter.com/{{ author.twitter }}"><span class="author__emoji" aria-hidden="true">💬</span>Twitter</a></li>
       {% endif %}
       {% if author.facebook %}
         <li><a href="https://www.facebook.com/{{ author.facebook }}">Facebook</a></li>
@@ -57,7 +57,7 @@
         <li><a href="https://plus.google.com/+{{ author.google_plus }}">Google+</a></li>
       {% endif %}
       {% if author.linkedin %}
-        <li><a href="https://www.linkedin.com/in/{{ author.linkedin }}">LinkedIn</a></li>
+        <li><a href="https://www.linkedin.com/in/{{ author.linkedin }}"><span class="author__emoji" aria-hidden="true">💼</span>LinkedIn</a></li>
       {% endif %}
       {% if author.dblp %}
         <li><a href="{{ author.dblp }}">DBLP</a></li>
@@ -75,13 +75,13 @@
         <li><a href="https://bitbucket.org/{{ author.bitbucket }}">Bitbucket</a></li>
       {% endif %}
       {% if author.github %}
-        <li><a href="https://github.com/{{ author.github }}">GitHub</a></li>
+        <li><a href="https://github.com/{{ author.github }}"><span class="author__emoji" aria-hidden="true">💻</span>GitHub</a></li>
       {% endif %}
       {% if author.huggingface %}
-        <li><a href="{{ author.huggingface }}">HuggingFace</a></li>
+        <li><a href="{{ author.huggingface }}"><span class="author__emoji" aria-hidden="true">🤗</span>HuggingFace</a></li>
       {% endif %}
       {% if author.medium %}
-        <li><a href="{{ author.medium }}">Medium</a></li>
+        <li><a href="{{ author.medium }}"><span class="author__emoji" aria-hidden="true">✍️</span>Medium</a></li>
       {% endif %}
       {% if author.stackoverflow %}
         <li><a href="https://www.stackoverflow.com/users/{{ author.stackoverflow }}">Stackoverflow</a></li>
@@ -120,7 +120,7 @@
         <li><a href="https://vine.co/u/{{ author.vine }}">Vine</a></li>
       {% endif %}
       {% if author.googlescholar %}
-        <li><a href="{{ author.googlescholar }}">Google Scholar</a></li>
+        <li><a href="{{ author.googlescholar }}"><span class="author__emoji" aria-hidden="true">🎓</span>Google Scholar</a></li>
       {% endif %}
       {% if author.pubmed %}
         <li><a href="{{ author.pubmed }}">PubMed</a></li>
@@ -137,16 +137,16 @@
     </ul>
       <div class="author__urls_sm">
       {% if author.uri %}
-        <a href="{{ author.uri }}" aria-label="Website"><span aria-hidden="true">Website</span></a>
+        <a href="{{ author.uri }}" aria-label="Website"><span class="author__emoji" aria-hidden="true">🌐</span><span aria-hidden="true">Website</span></a>
       {% endif %}
       {% if author.email %}
-        <a href="mailto:{{ author.email }}" aria-label="Email"><span aria-hidden="true">Email</span></a>
+        <a href="mailto:{{ author.email }}" aria-label="Email"><span class="author__emoji" aria-hidden="true">✉️</span><span aria-hidden="true">Email</span></a>
       {% endif %}
       {% if author.cv %}
-        <a href="{{ author.cv }}" aria-label="CV"><span aria-hidden="true">CV</span></a>
+        <a href="{{ author.cv }}" aria-label="CV"><span class="author__emoji" aria-hidden="true">📄</span><span aria-hidden="true">CV</span></a>
       {% endif %}
       {% if author.blog %}
-        <a href="{{ author.blog | relative_url }}" aria-label="Blog"><span aria-hidden="true">Blog</span></a>
+        <a href="{{ author.blog | relative_url }}" aria-label="Blog"><span class="author__emoji" aria-hidden="true">📝</span><span aria-hidden="true">Blog</span></a>
       {% endif %}
       {% if author.keybase %}
         <a href="https://keybase.io/{{ author.keybase }}" aria-label="Keybase"><span aria-hidden="true">Keybase</span></a>
@@ -155,7 +155,7 @@
         <a href="{{ author.researchgate }}" aria-label="ResearchGate"><span aria-hidden="true">ResearchGate</span></a>
       {% endif %}
       {% if author.twitter %}
-        <a href="https://twitter.com/{{ author.twitter }}" aria-label="Twitter"><span aria-hidden="true">Twitter</span></a>
+        <a href="https://twitter.com/{{ author.twitter }}" aria-label="Twitter"><span class="author__emoji" aria-hidden="true">💬</span><span aria-hidden="true">Twitter</span></a>
       {% endif %}
       {% if author.facebook %}
         <a href="https://www.facebook.com/{{ author.facebook }}" aria-label="Facebook"><span aria-hidden="true">Facebook</span></a>
@@ -164,7 +164,7 @@
         <a href="https://plus.google.com/+{{ author.google_plus }}" aria-label="Google Plus"><span aria-hidden="true">Google Plus</span></a>
       {% endif %}
       {% if author.linkedin %}
-        <a href="https://www.linkedin.com/in/{{ author.linkedin }}" aria-label="LinkedIn"><span aria-hidden="true">LinkedIn</span></a>
+        <a href="https://www.linkedin.com/in/{{ author.linkedin }}" aria-label="LinkedIn"><span class="author__emoji" aria-hidden="true">💼</span><span aria-hidden="true">LinkedIn</span></a>
       {% endif %}
       {% if author.dblp %}
         <a href="{{ author.dblp }}" aria-label="DBLP"><span aria-hidden="true">DBLP</span></a>
@@ -182,13 +182,13 @@
         <a href="https://bitbucket.org/{{ author.bitbucket }}" aria-label="Bitbucket"><span aria-hidden="true">Bitbucket</span></a>
       {% endif %}
       {% if author.github %}
-        <a href="https://github.com/{{ author.github }}" aria-label="GitHub"><span aria-hidden="true">GitHub</span></a>
+        <a href="https://github.com/{{ author.github }}" aria-label="GitHub"><span class="author__emoji" aria-hidden="true">💻</span><span aria-hidden="true">GitHub</span></a>
       {% endif %}
       {% if author.huggingface %}
-        <a href="{{ author.huggingface }}" aria-label="Hugging Face"><span aria-hidden="true">Hugging Face</span></a>
+        <a href="{{ author.huggingface }}" aria-label="Hugging Face"><span class="author__emoji" aria-hidden="true">🤗</span><span aria-hidden="true">Hugging Face</span></a>
       {% endif %}
       {% if author.medium %}
-        <a href="{{ author.medium }}" aria-label="Medium"><span aria-hidden="true">Medium</span></a>
+        <a href="{{ author.medium }}" aria-label="Medium"><span class="author__emoji" aria-hidden="true">✍️</span><span aria-hidden="true">Medium</span></a>
       {% endif %}
       {% if author.stackoverflow %}
         <a href="https://www.stackoverflow.com/users/{{ author.stackoverflow }}" aria-label="Stack Overflow"><span aria-hidden="true">Stack Overflow</span></a>
@@ -227,7 +227,7 @@
         <a href="https://vine.co/u/{{ author.vine }}" aria-label="Vine"><span aria-hidden="true">Vine</span></a>
       {% endif %}
       {% if author.googlescholar %}
-        <a href="{{ author.googlescholar }}" aria-label="Google Scholar"><span aria-hidden="true">Google Scholar</span></a>
+        <a href="{{ author.googlescholar }}" aria-label="Google Scholar"><span class="author__emoji" aria-hidden="true">🎓</span><span aria-hidden="true">Google Scholar</span></a>
       {% endif %}
       {% if author.pubmed %}
         <a href="{{ author.pubmed }}" aria-label="PubMed"><span aria-hidden="true">PubMed</span></a>

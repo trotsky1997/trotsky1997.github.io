@@ -270,6 +270,13 @@
   }
 }
 
+.author__emoji {
+  display: inline-block;
+  width: 1.35em;
+  margin-right: 0.25em;
+  text-align: center;
+}
+
 .author__urls_sm{
   padding: .25em;
   font-size: 0.8rem;
