@@ -23,7 +23,9 @@ I am a Research Resident and Head of Agent Model at MindLab starting in 2026. Pr
   <a href="https://scholar.google.com/citations?user=vxAO250AAAAJ&hl=en">Google Scholar</a>
   <a href="https://www.linkedin.com/in/di-zhang-740238330/?locale=en">LinkedIn</a>
   <a href="https://huggingface.co/di-zhang-fdu">HuggingFace</a>
+  <a href="https://github.com/{{ site.author.github }}">GitHub</a>
   <a href="https://x.com/di_zhang_fdu">X/Twitter</a>
+  <a href="{{ site.author.blog | relative_url }}">Blog</a>
   <a href="https://di-zhang-fdu.medium.com">Medium Blog</a>
 </div>
 
