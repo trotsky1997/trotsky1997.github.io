@@ -12,21 +12,21 @@
 <section class="page__share" aria-labelledby="share-title">
   <h2 id="share-title" class="page__share-title">Share</h2>
   <a class="btn btn--twitter btn--small" href="https://twitter.com/intent/tweet?text={{ share_title_encoded }}&url={{ share_url_encoded }}{% if site.author.twitter %}&via={{ site.author.twitter | replace: '@', '' | url_encode }}{% endif %}" target="_blank" rel="noopener noreferrer">
-    <i class="fab fa-twitter" aria-hidden="true"></i><span> X/Twitter</span>
+    <span>X/Twitter</span>
   </a>
   <a class="btn btn--linkedin btn--small" href="https://www.linkedin.com/shareArticle?mini=true&url={{ share_url_encoded }}&title={{ share_title_encoded }}&summary={{ share_summary_encoded }}" target="_blank" rel="noopener noreferrer">
-    <i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span>
+    <span>LinkedIn</span>
   </a>
   <a class="btn btn--facebook btn--small" href="https://www.facebook.com/sharer/sharer.php?u={{ share_url_encoded }}" target="_blank" rel="noopener noreferrer">
-    <i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span>
+    <span>Facebook</span>
   </a>
   <a class="btn btn--weibo btn--small" href="https://service.weibo.com/share/share.php?url={{ share_url_encoded }}&title={{ share_title_encoded }}" target="_blank" rel="noopener noreferrer">
-    <i class="fab fa-weibo" aria-hidden="true"></i><span> Weibo</span>
+    <span>Weibo</span>
   </a>
   <a class="btn btn--inverse btn--small" href="mailto:?subject={{ share_title_encoded }}&body={{ share_email_body }}">
-    <i class="far fa-envelope" aria-hidden="true"></i><span> Email</span>
+    <span>Email</span>
   </a>
   <button class="btn btn--inverse btn--small share-link-button" type="button" data-share-url="{{ share_url }}" aria-label="Copy page link">
-    <i class="fas fa-link" aria-hidden="true"></i><span> Copy link</span>
+    <span>Copy link</span>
   </button>
 </section>

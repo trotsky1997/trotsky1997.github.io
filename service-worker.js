@@ -13,7 +13,6 @@ const ASSET_VERSION = "?v={{ site.time | date: '%Y%m%d%H%M%S' }}";
 const PRECACHE_URLS = [
   "{{ '/' | relative_url }}",
   "{{ '/assets/css/main.css' | relative_url }}" + ASSET_VERSION,
-  "{{ '/assets/css/academicons.css' | relative_url }}" + ASSET_VERSION,
   "{{ '/assets/js/site.min.js' | relative_url }}" + ASSET_VERSION
 ];
 

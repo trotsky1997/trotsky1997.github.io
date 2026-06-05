@@ -8,12 +8,9 @@
 <meta name="msapplication-TileImage" content="{{ '/images/mstile-144x144.png?v=M44lzPylqQ' | relative_url }}">
 <meta name="msapplication-config" content="{{ '/images/browserconfig.xml?v=M44lzPylqQ' | relative_url }}">
 <meta name="theme-color" content="#ffffff">
-{% assign academicons_css = "/assets/css/academicons.css" | relative_url %}
 {% assign katex_css = "/assets/vendor/katex/katex.min.css" | relative_url %}
 {% assign katex_script = "/assets/vendor/katex/katex.min.js" | relative_url %}
 {% assign katex_auto_render = "/assets/vendor/katex/contrib/auto-render.min.js" | relative_url %}
-<link rel="preload" href="{{ academicons_css }}?v={{ asset_version }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ academicons_css }}?v={{ asset_version }}"></noscript>
 {% if page.math %}
 <link rel="preload" href="{{ katex_css }}?v={{ asset_version }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="{{ katex_css }}?v={{ asset_version }}"></noscript>

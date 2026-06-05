@@ -16,6 +16,8 @@
 
 <!-- For all browsers -->
 {% assign asset_version = site.time | date: "%Y%m%d%H%M%S" %}
-<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ asset_version }}">
+{% include critical-css.html %}
+<link rel="preload" href="{{ '/assets/css/main.css' | relative_url }}?v={{ asset_version }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ asset_version }}"></noscript>
 
 <meta http-equiv="cleartype" content="on">
