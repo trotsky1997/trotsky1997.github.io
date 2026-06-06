@@ -1,0 +1,7 @@
+name = "dz-site-cdn"
+main = "src/index.mjs"
+compatibility_date = "2026-06-06"
+workers_dev = true
+
+[vars]
+ORIGIN = "https://trotsky1997.github.io"
