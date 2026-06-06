@@ -11,6 +11,9 @@ reader enters email on /subscribe/
 Cloudflare Worker POST /subscribe
         |
         v
+Cloudflare Turnstile Siteverify
+        |
+        v
 D1 confirmed subscribers
         |
         v
@@ -33,6 +36,7 @@ Cloudflare Email Sending is not used. Cloudflare's current pricing makes Email R
 - Worker implementation: `workers/update-subscriptions/`
 - Sender script: `workers/update-subscriptions/scripts/send-digest.mjs`
 - GitHub Actions workflow: `.github/workflows/update-digest.yml`
+- Turnstile site key: `_config.yml` under `update_subscription.turnstile_site_key`
 - Cloudflare references:
   - [Building a CLI for all of Cloudflare](https://blog.cloudflare.com/cf-cli-local-explorer/)
   - [Local Explorer](https://developers.cloudflare.com/workers/development-testing/local-explorer/)
@@ -48,6 +52,8 @@ Cloudflare Email Sending is not used. Cloudflare's current pricing makes Email R
 
 - `POST /subscribe`
   - Web subscription endpoint used by `/subscribe/`.
+  - Requires a valid Cloudflare Turnstile token when `TURNSTILE_REQUIRED=true`.
+  - Validates the token action and hostname before writing subscriber state.
   - Stores a confirmed subscriber immediately and returns a personalized unsubscribe URL.
 - `email(message, env, ctx)`
   - Handles inbound Email Routing messages.
@@ -117,6 +123,26 @@ UPDATE_SMTP_SECURE=false
 Use port `465` with `UPDATE_SMTP_SECURE=true` only when the provider requires implicit TLS.
 
 If there are updates and confirmed subscribers but SMTP settings are missing, the workflow fails instead of pretending delivery happened.
+
+## Turnstile Hardening
+
+The subscribe form uses Cloudflare Turnstile to reduce form abuse:
+
+- The public site key is rendered in `/subscribe/`.
+- The Turnstile secret key is stored only as a Worker secret.
+- `/subscribe` calls `https://challenges.cloudflare.com/turnstile/v0/siteverify` before storing the email.
+- `TURNSTILE_ACTION=update-subscribe` prevents action reuse.
+- `TURNSTILE_ALLOWED_HOSTNAMES=trotsky1997.github.io` prevents tokens from other hostnames being reused.
+- Missing or invalid tokens return 403 and do not write to D1.
+
+Required Worker settings:
+
+```text
+TURNSTILE_SECRET_KEY
+TURNSTILE_REQUIRED=true
+TURNSTILE_ACTION=update-subscribe
+TURNSTILE_ALLOWED_HOSTNAMES=trotsky1997.github.io
+```
 
 ## Local Development
 

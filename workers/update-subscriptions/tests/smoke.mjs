@@ -108,6 +108,63 @@ if (webPayload.status !== "confirmed" || !webPayload.unsubscribe_url) {
   throw new Error("web subscribe did not immediately confirm subscriber");
 }
 
+const strictMissingSecret = env();
+strictMissingSecret.TURNSTILE_REQUIRED = "true";
+const strictResponse = await worker.fetch(new Request("http://worker.test/subscribe", {
+  method: "POST",
+  body: new URLSearchParams({ email: "strict@example.com" }),
+}), strictMissingSecret);
+if (strictResponse.status !== 503) {
+  throw new Error("turnstile-required subscribe without secret should fail closed");
+}
+
+const originalFetch = globalThis.fetch;
+let verifiedToken = "";
+globalThis.fetch = async (url, init) => {
+  if (String(url) === "https://challenges.cloudflare.com/turnstile/v0/siteverify") {
+    const body = JSON.parse(init.body);
+    verifiedToken = body.response;
+    return new Response(JSON.stringify({
+      success: body.response === "valid-turnstile-token" || body.response === "wrong-action-token",
+      action: body.response === "wrong-action-token" ? "other-action" : "update-subscribe",
+      hostname: "trotsky1997.github.io",
+    }), {
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+  return originalFetch(url, init);
+};
+
+try {
+  const protectedEnv = env();
+  protectedEnv.TURNSTILE_SECRET_KEY = "test-secret";
+  protectedEnv.TURNSTILE_REQUIRED = "true";
+  const protectedSubscribe = await worker.fetch(new Request("http://worker.test/subscribe", {
+    method: "POST",
+    body: new URLSearchParams({
+      email: "protected@example.com",
+      "cf-turnstile-response": "valid-turnstile-token",
+    }),
+  }), protectedEnv);
+  const protectedPayload = await protectedSubscribe.json();
+  if (protectedPayload.status !== "confirmed" || verifiedToken !== "valid-turnstile-token") {
+    throw new Error("turnstile-protected subscribe did not validate token before confirming");
+  }
+
+  const wrongActionSubscribe = await worker.fetch(new Request("http://worker.test/subscribe", {
+    method: "POST",
+    body: new URLSearchParams({
+      email: "wrong-action@example.com",
+      "cf-turnstile-response": "wrong-action-token",
+    }),
+  }), protectedEnv);
+  if (wrongActionSubscribe.status !== 403) {
+    throw new Error("turnstile token with wrong action should be rejected");
+  }
+} finally {
+  globalThis.fetch = originalFetch;
+}
+
 await worker.email(emailMessage("Reader <reader@example.com>", "subscribe"), e, {});
 let status = await worker.fetch(new Request("http://worker.test/admin/status?token=test-token"), e);
 let payload = await status.json();

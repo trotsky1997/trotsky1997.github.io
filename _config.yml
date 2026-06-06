@@ -62,6 +62,7 @@ update_subscription:
   page             : "/subscribe/"
   worker_url       : "https://dz-update-subscriptions.qq893371906.workers.dev"
   email            : "updates@chemllm.org"
+  turnstile_site_key: "0x4AAAAAADf0qKD25-FXUgRM"
 
 include:
   - .htaccess

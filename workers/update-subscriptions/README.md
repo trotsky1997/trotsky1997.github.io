@@ -22,6 +22,21 @@ updates@chemllm.org -> dz-update-subscriptions
 - Exposes admin-only CSV export at `/admin/subscribers.csv?token=...`.
 - Exposes admin-only digest generation at `/admin/digest?token=...`.
 
+## Turnstile Protection
+
+Web subscriptions are protected by Cloudflare Turnstile. The browser renders the widget with the public site key from `_config.yml`, then posts the `cf-turnstile-response` token with the email form. The Worker validates that token against Cloudflare Siteverify before writing to D1.
+
+Production Worker settings:
+
+```text
+TURNSTILE_SECRET_KEY
+TURNSTILE_REQUIRED=true
+TURNSTILE_ACTION=update-subscribe
+TURNSTILE_ALLOWED_HOSTNAMES=trotsky1997.github.io
+```
+
+`TURNSTILE_SECRET_KEY` is a Worker secret and must never be committed. If `TURNSTILE_REQUIRED=true` and the secret is missing, `/subscribe` fails closed with `503`.
+
 ## Sender
 
 `scripts/send-digest.mjs` sends real digest email through SMTP.
@@ -114,5 +129,5 @@ The production path requires Cloudflare DNS and Email Routing configured manuall
 
 - route a custom address such as `updates@example.com` to this Worker;
 - create a D1 database and bind it as `DB`;
-- store `ADMIN_TOKEN` and `TOKEN_SECRET` as Worker secrets;
+- store `ADMIN_TOKEN`, `TOKEN_SECRET`, `TURNSTILE_SECRET_KEY`, and `TURNSTILE_REQUIRED` as Worker secrets;
 - store the SMTP and Worker admin values as GitHub Actions repository secrets.

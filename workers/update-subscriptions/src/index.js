@@ -95,7 +95,16 @@ export default {
 };
 
 async function handleWebSubscribe(request, env, url) {
-  const email = normalizeEmail(await readEmail(request));
+  const body = await readSubscribeBody(request);
+  const turnstile = await verifyTurnstile(body.turnstileToken, request, env);
+  if (!turnstile.ok) {
+    return json({
+      error: "turnstile_failed",
+      reason: turnstile.reason,
+    }, env, turnstile.status, request);
+  }
+
+  const email = normalizeEmail(body.email);
   if (!email) return json({ error: "invalid_email" }, env, 400);
 
   const now = new Date().toISOString();
@@ -264,14 +273,84 @@ async function recordEvent(env, email, eventType, subject, messageId, now) {
   ).bind(email, eventType, subject, messageId, now).run();
 }
 
-async function readEmail(request) {
+async function readSubscribeBody(request) {
   const contentType = request.headers.get("content-type") || "";
   if (contentType.includes("application/json")) {
     const body = await request.json();
-    return body.email || "";
+    return {
+      email: body.email || "",
+      turnstileToken: body["cf-turnstile-response"] || body.turnstileToken || "",
+    };
   }
   const form = await request.formData();
-  return form.get("email") || "";
+  return {
+    email: form.get("email") || "",
+    turnstileToken: form.get("cf-turnstile-response") || "",
+  };
+}
+
+async function verifyTurnstile(token, request, env) {
+  const secret = env.TURNSTILE_SECRET_KEY || "";
+  const required = boolEnv(env.TURNSTILE_REQUIRED, !!secret);
+
+  if (!required && !secret) {
+    return { ok: true, status: 200, reason: "disabled" };
+  }
+
+  if (!secret) {
+    return { ok: false, status: 503, reason: "turnstile_not_configured" };
+  }
+
+  if (!token) {
+    return { ok: false, status: 403, reason: "missing_token" };
+  }
+
+  const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      secret,
+      response: token,
+      remoteip: request.headers.get("CF-Connecting-IP") || undefined,
+    }),
+  });
+
+  if (!response.ok) {
+    return { ok: false, status: 502, reason: "siteverify_unavailable" };
+  }
+
+  const payload = await response.json();
+  if (!payload.success) {
+    return { ok: false, status: 403, reason: "invalid_token" };
+  }
+
+  const expectedAction = env.TURNSTILE_ACTION || "update-subscribe";
+  if (expectedAction && payload.action && payload.action !== expectedAction) {
+    return { ok: false, status: 403, reason: "invalid_action" };
+  }
+
+  const allowedHostnames = turnstileAllowedHostnames(env);
+  if (allowedHostnames.length > 0 && !allowedHostnames.includes(payload.hostname || "")) {
+    return { ok: false, status: 403, reason: "invalid_hostname" };
+  }
+
+  return { ok: true, status: 200, reason: "verified" };
+}
+
+function turnstileAllowedHostnames(env) {
+  const configured = env.TURNSTILE_ALLOWED_HOSTNAMES || hostnameFromOrigin(env.SITE_ORIGIN);
+  return String(configured || "")
+    .split(",")
+    .map((hostname) => hostname.trim().toLowerCase())
+    .filter(Boolean);
+}
+
+function hostnameFromOrigin(origin) {
+  try {
+    return new URL(origin).hostname;
+  } catch {
+    return "";
+  }
 }
 
 function parseIntent(subject) {
@@ -362,6 +441,11 @@ function decodeXml(value) {
 function clamp(value, min, max) {
   if (Number.isNaN(value)) return min;
   return Math.max(min, Math.min(max, value));
+}
+
+function boolEnv(value, defaultValue = false) {
+  if (value === undefined || value === null || value === "") return defaultValue;
+  return /^(1|true|yes|on)$/i.test(String(value));
 }
 
 function csv(value) {

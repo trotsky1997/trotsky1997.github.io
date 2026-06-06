@@ -10,10 +10,14 @@ SITE_ORIGIN = "https://trotsky1997.github.io"
 UPDATE_FEED_URL = "https://trotsky1997.github.io/updates.xml"
 PUBLIC_WORKER_URL = "http://127.0.0.1:8787"
 DIGEST_SUBJECT = "Di Zhang publication and blog updates"
+TURNSTILE_REQUIRED = "false"
+TURNSTILE_ACTION = "update-subscribe"
+TURNSTILE_ALLOWED_HOSTNAMES = "trotsky1997.github.io,localhost,127.0.0.1"
 
 # Local/dev placeholder values. Replace with Wrangler secrets in production.
 ADMIN_TOKEN = "dev-admin-token"
 TOKEN_SECRET = "dev-token-secret-change-me"
+TURNSTILE_SECRET_KEY = "1x0000000000000000000000000000000AA"
 
 [[d1_databases]]
 binding = "DB"

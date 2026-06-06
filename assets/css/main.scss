@@ -268,7 +268,18 @@
         &:hover {
             background: #115e59;
         }
+
+        &:disabled {
+            cursor: not-allowed;
+            border-color: #94a3b8;
+            background: #94a3b8;
+        }
     }
+}
+
+.subscribe-turnstile {
+    margin-top: 0.8rem;
+    min-height: 65px;
 }
 
 .subscribe-result {
