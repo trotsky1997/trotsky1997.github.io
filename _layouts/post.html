@@ -49,14 +49,17 @@ layout: default
   {% assign citation_month = page.date | date: "%B" %}
   {% assign citation_key = page.slug | default: page.title | downcase | replace: " ", "-" | replace: "'", "" | replace: ":", "" | replace: ",", "" | replace: ".", "" | replace: "?", "" | replace: "!", "" | replace: "-", "" %}
   {% assign citation_url = page.url | absolute_url %}
-  <p>
-    Di Zhang. "{{ page.title }}." <em>Di Zhang Blog</em>, {{ page.date | date: "%B %-d, %Y" }}.
-    {% if page.original_medium_url %}
-      Originally published on <a href="{{ page.original_medium_url }}">Medium</a>.
-    {% elsif page.original_url %}
-      Originally published on <a href="{{ page.original_url }}">{{ page.original_site | default: "the original source" }}</a>.
-    {% endif %}
-  </p>
+  <div class="citation-text-block">
+    <button class="copy-citation-button" type="button" aria-label="Copy text citation" data-copy-target="citation-text">Copy</button>
+    <p id="citation-text">
+      Di Zhang. "{{ page.title }}." <em>Di Zhang Blog</em>, {{ page.date | date: "%B %-d, %Y" }}.
+      {% if page.original_medium_url %}
+        Originally published on <a href="{{ page.original_medium_url }}">Medium</a>.
+      {% elsif page.original_url %}
+        Originally published on <a href="{{ page.original_url }}">{{ page.original_site | default: "the original source" }}</a>.
+      {% endif %}
+    </p>
+  </div>
   <details>
     <summary>BibTeX</summary>
     <div class="citation-code-block">
@@ -75,17 +78,17 @@ layout: default
 
 <script>
   (function () {
-    var button = document.querySelector(".copy-citation-button");
-    if (!button) return;
+    var buttons = document.querySelectorAll(".copy-citation-button");
+    if (!buttons.length) return;
 
-    var resetLabel = function () {
+    var resetLabel = function (button) {
       window.setTimeout(function () {
         button.textContent = "Copy";
         button.classList.remove("copied");
       }, 1600);
     };
 
-    button.addEventListener("click", function () {
+    var bindCopyButton = function (button) {
       var target = document.getElementById(button.getAttribute("data-copy-target"));
       if (!target) return;
 
@@ -93,7 +96,7 @@ layout: default
       var markCopied = function () {
         button.textContent = "Copied";
         button.classList.add("copied");
-        resetLabel();
+        resetLabel(button);
       };
 
       if (navigator.clipboard && window.isSecureContext) {
@@ -114,6 +117,12 @@ layout: default
           if (document.execCommand("copy")) markCopied();
         } catch (error) {}
       }
+    };
+
+    Array.prototype.forEach.call(buttons, function (button) {
+      button.addEventListener("click", function () {
+        bindCopyButton(button);
+      });
     });
   })();
 </script>

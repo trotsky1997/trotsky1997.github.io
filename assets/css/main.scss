@@ -882,6 +882,14 @@ h1:before, .anchor:before {
         line-height: 1.55;
     }
 
+    .citation-text-block {
+        position: relative;
+
+        p {
+            padding-right: 4.7rem;
+        }
+    }
+
     summary {
         cursor: pointer;
         color: #1e40af;
