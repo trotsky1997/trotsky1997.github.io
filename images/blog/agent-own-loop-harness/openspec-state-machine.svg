@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc">
+  <title id="title">OpenSpec as an agent-readable state machine</title>
+  <desc id="desc">A loop diagram showing status, instructions, artifact writing, validation, task application, and archive as the main OpenSpec control loop.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/>
+    </marker>
+    <style>
+      .bg { fill: #fbfdff; }
+      .title { font: 700 34px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 17px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; }
+      .node { fill: #ffffff; stroke: #93c5fd; stroke-width: 2.5; }
+      .node-fill { fill: #eff6ff; stroke: #60a5fa; stroke-width: 2.5; }
+      .done { fill: #ecfdf5; stroke: #22c55e; stroke-width: 2.5; }
+      .warn { fill: #fff7ed; stroke: #fb923c; stroke-width: 2.5; }
+      .error { fill: #fef2f2; stroke: #f87171; stroke-width: 2.5; }
+      .label { font: 700 22px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .small { font: 500 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; }
+      .code { font: 700 16px ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; fill: #1e3a8a; }
+      .line { fill: none; stroke: #2563eb; stroke-width: 3; marker-end: url(#arrow); }
+      .repair { fill: none; stroke: #dc2626; stroke-width: 3; stroke-dasharray: 8 8; marker-end: url(#arrow-red); }
+      .soft { fill: none; stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 6 8; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1200" height="640"/>
+  <text class="title" x="60" y="58">OpenSpec as a state machine</text>
+  <text class="subtitle" x="60" y="90">The agent replaces "ask the user for next" with state, instructions, and validation.</text>
+
+  <ellipse class="soft" cx="600" cy="348" rx="410" ry="205"/>
+
+  <rect class="node-fill" x="110" y="270" width="185" height="86" rx="16"/>
+  <text class="code" x="142" y="306">status --json</text>
+  <text class="small" x="142" y="330">ready / blocked / done</text>
+
+  <rect class="node" x="380" y="150" width="205" height="90" rx="16"/>
+  <text class="code" x="408" y="187">instructions</text>
+  <text class="small" x="408" y="211">what to read and write</text>
+
+  <rect class="node" x="690" y="150" width="205" height="90" rx="16"/>
+  <text class="label" x="735" y="187">Artifact</text>
+  <text class="small" x="722" y="211">proposal / specs / design</text>
+
+  <rect class="warn" x="925" y="270" width="185" height="86" rx="16"/>
+  <text class="code" x="961" y="306">validate</text>
+  <text class="small" x="956" y="330">strict correction oracle</text>
+
+  <rect class="node" x="690" y="450" width="205" height="90" rx="16"/>
+  <text class="label" x="735" y="487">Apply tasks</text>
+  <text class="small" x="727" y="511">implement and mark done</text>
+
+  <rect class="done" x="380" y="450" width="205" height="90" rx="16"/>
+  <text class="code" x="421" y="487">archive -y</text>
+  <text class="small" x="411" y="511">promote deltas to specs</text>
+
+  <rect class="error" x="455" y="290" width="290" height="92" rx="16"/>
+  <text class="label" x="515" y="326">Validation error</text>
+  <text class="small" x="500" y="350">precise failure becomes repair input</text>
+
+  <path class="line" d="M 295 313 C 338 270 365 235 380 205"/>
+  <path class="line" d="M 585 195 C 625 195 650 195 690 195"/>
+  <path class="line" d="M 895 195 C 944 216 984 242 1017 270"/>
+  <path class="line" d="M 1017 356 C 982 405 943 438 895 478"/>
+  <path class="line" d="M 690 495 C 650 495 625 495 585 495"/>
+  <path class="line" d="M 380 495 C 315 455 270 407 230 356"/>
+  <path class="line" d="M 202 270 C 230 210 288 145 390 121"/>
+
+  <path class="repair" d="M 925 313 C 840 320 800 328 745 336"/>
+  <path class="repair" d="M 455 336 C 365 330 330 322 295 313"/>
+
+  <text class="small" x="120" y="590">Loop invariant: observe state before action, write durable artifacts, validate before claiming done.</text>
+</svg>

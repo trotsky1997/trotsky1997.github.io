@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Harness behavior migrating into model intuition</title>
+  <desc id="desc">A layered diagram showing repeated explicit harness procedures becoming agent-owned loops and later model intuition through harness and post-training co-design.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 34px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 17px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; }
+      .band1 { fill: #fff7ed; stroke: #fdba74; stroke-width: 2; }
+      .band2 { fill: #eff6ff; stroke: #93c5fd; stroke-width: 2; }
+      .band3 { fill: #ecfdf5; stroke: #86efac; stroke-width: 2; }
+      .node { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; }
+      .label { font: 700 23px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .small { font: 500 16px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; }
+      .tiny { font: 600 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #64748b; }
+      .code { font: 700 15px ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; fill: #1e3a8a; }
+      .line { fill: none; stroke: #2563eb; stroke-width: 3; marker-end: url(#arrow); }
+      .down { fill: none; stroke: #64748b; stroke-width: 3; stroke-dasharray: 8 8; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1200" height="620"/>
+  <text class="title" x="60" y="58">The boundary moves</text>
+  <text class="subtitle" x="60" y="90">Repeated harness behavior can move from external procedure to agent-owned habit to model intuition.</text>
+
+  <rect class="band1" x="70" y="135" width="1060" height="120" rx="18"/>
+  <rect class="band2" x="70" y="285" width="1060" height="120" rx="18"/>
+  <rect class="band3" x="70" y="435" width="1060" height="120" rx="18"/>
+
+  <text class="label" x="105" y="182">1. Explicit harness procedure</text>
+  <text class="small" x="105" y="211">Rules live outside the model as scripts, validators, and checklists.</text>
+
+  <text class="label" x="105" y="332">2. Agent-owned loop</text>
+  <text class="small" x="105" y="361">The agent operates the procedure without routine "next" prompts.</text>
+
+  <text class="label" x="105" y="482">3. Model intuition</text>
+  <text class="small" x="105" y="511">Post-training turns repeated good operation into default expectations.</text>
+
+  <rect class="node" x="675" y="155" width="145" height="70" rx="14"/>
+  <text class="code" x="707" y="183">status</text>
+  <text class="tiny" x="700" y="205">observe first</text>
+
+  <rect class="node" x="845" y="155" width="145" height="70" rx="14"/>
+  <text class="code" x="882" y="183">validate</text>
+  <text class="tiny" x="872" y="205">repair loop</text>
+
+  <rect class="node" x="675" y="305" width="145" height="70" rx="14"/>
+  <text class="code" x="704" y="333">all_done</text>
+  <text class="tiny" x="704" y="355">real stop</text>
+
+  <rect class="node" x="845" y="305" width="145" height="70" rx="14"/>
+  <text class="code" x="877" y="333">archive</text>
+  <text class="tiny" x="869" y="355">close loop</text>
+
+  <rect class="node" x="675" y="455" width="145" height="70" rx="14"/>
+  <text class="code" x="696" y="483">state habit</text>
+  <text class="tiny" x="697" y="505">no prompt needed</text>
+
+  <rect class="node" x="845" y="455" width="145" height="70" rx="14"/>
+  <text class="code" x="868" y="483">done means</text>
+  <text class="tiny" x="872" y="505">verified state</text>
+
+  <path class="line" d="M 820 190 C 833 190 833 190 845 190"/>
+  <path class="line" d="M 820 340 C 833 340 833 340 845 340"/>
+  <path class="line" d="M 820 490 C 833 490 833 490 845 490"/>
+
+  <path class="down" d="M 747 225 C 747 250 747 272 747 305"/>
+  <path class="down" d="M 917 225 C 917 250 917 272 917 305"/>
+  <path class="down" d="M 747 375 C 747 400 747 422 747 455"/>
+  <path class="down" d="M 917 375 C 917 400 917 422 917 455"/>
+
+  <path class="line" d="M 245 558 C 420 574 770 574 1000 558"/>
+  <text class="small" x="360" y="602">Harness/post-training co-design: external loops teach internal habits.</text>
+</svg>

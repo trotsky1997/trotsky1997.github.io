@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">User-owned harness versus agent-owned harness</title>
+  <desc id="desc">A comparison diagram showing a human-attended agent workflow on the left and an autonomous agent-owned loop harness on the right.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .panel { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; }
+      .panel-left { stroke: #f97316; }
+      .panel-right { stroke: #2563eb; }
+      .title { font: 700 34px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .label { font: 700 24px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .small { font: 500 17px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; }
+      .tiny { font: 600 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #64748b; }
+      .node { fill: #eff6ff; stroke: #93c5fd; stroke-width: 2; }
+      .node-orange { fill: #fff7ed; stroke: #fdba74; stroke-width: 2; }
+      .node-green { fill: #ecfdf5; stroke: #86efac; stroke-width: 2; }
+      .pill { fill: #0f172a; }
+      .pill-text { font: 700 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; letter-spacing: 0.4px; }
+      .line { fill: none; stroke: #2563eb; stroke-width: 3; marker-end: url(#arrow); }
+      .muted-line { fill: none; stroke: #64748b; stroke-width: 3; marker-end: url(#arrow-muted); }
+      .dash { fill: none; stroke: #f97316; stroke-width: 3; stroke-dasharray: 10 8; marker-end: url(#arrow-muted); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1200" height="720"/>
+  <text class="title" x="60" y="60">Who owns the loop?</text>
+  <text class="small" x="60" y="91">The difference is not model capability. It is operational ownership.</text>
+
+  <rect class="panel panel-left" x="60" y="125" width="500" height="560" rx="18"/>
+  <rect class="panel panel-right" x="640" y="125" width="500" height="560" rx="18"/>
+
+  <text class="label" x="92" y="168">User-own harness</text>
+  <text class="small" x="92" y="198">Human attention is the event loop.</text>
+
+  <text class="label" x="672" y="168">Agent-own harness</text>
+  <text class="small" x="672" y="198">The agent runs the loop until a real stop.</text>
+
+  <rect class="node-orange" x="120" y="245" width="170" height="74" rx="12"/>
+  <text class="label" x="157" y="291">User</text>
+
+  <rect class="node-orange" x="340" y="245" width="120" height="74" rx="12"/>
+  <text class="label" x="368" y="276">Next</text>
+  <text class="tiny" x="365" y="300">clock pulse</text>
+
+  <rect class="node" x="120" y="390" width="170" height="74" rx="12"/>
+  <text class="label" x="158" y="421">Agent</text>
+  <text class="tiny" x="153" y="445">does a step</text>
+
+  <rect class="node-green" x="340" y="390" width="120" height="74" rx="12"/>
+  <text class="label" x="357" y="421">Artifact</text>
+  <text class="tiny" x="367" y="445">one phase</text>
+
+  <path class="dash" d="M 290 282 C 310 282 320 282 340 282"/>
+  <path class="muted-line" d="M 400 319 C 400 350 373 367 290 404"/>
+  <path class="muted-line" d="M 290 427 C 310 427 320 427 340 427"/>
+  <path class="dash" d="M 340 464 C 230 535 114 520 135 335"/>
+
+  <rect class="pill" x="140" y="560" width="340" height="44" rx="22"/>
+  <text class="pill-text" x="172" y="587">human babysits every transition</text>
+
+  <rect class="node-orange" x="700" y="245" width="170" height="74" rx="12"/>
+  <text class="label" x="743" y="276">User</text>
+  <text class="tiny" x="725" y="300">intent only</text>
+
+  <rect class="node" x="920" y="245" width="160" height="74" rx="12"/>
+  <text class="label" x="943" y="276">Harness</text>
+  <text class="tiny" x="943" y="300">owns control</text>
+
+  <rect class="node" x="736" y="390" width="125" height="62" rx="12"/>
+  <text class="tiny" x="771" y="415">status</text>
+  <text class="tiny" x="752" y="438">read state</text>
+
+  <rect class="node" x="916" y="390" width="125" height="62" rx="12"/>
+  <text class="tiny" x="943" y="415">write</text>
+  <text class="tiny" x="935" y="438">artifact</text>
+
+  <rect class="node" x="916" y="500" width="125" height="62" rx="12"/>
+  <text class="tiny" x="938" y="525">validate</text>
+  <text class="tiny" x="929" y="548">self-repair</text>
+
+  <rect class="node-green" x="736" y="500" width="125" height="62" rx="12"/>
+  <text class="tiny" x="768" y="525">done</text>
+  <text class="tiny" x="759" y="548">archive</text>
+
+  <path class="line" d="M 870 282 C 890 282 900 282 920 282"/>
+  <path class="line" d="M 1000 319 C 1055 352 1045 390 1040 421"/>
+  <path class="line" d="M 916 421 C 895 421 882 421 861 421"/>
+  <path class="line" d="M 798 452 C 798 475 798 477 798 500"/>
+  <path class="line" d="M 861 531 C 887 531 890 531 916 531"/>
+  <path class="line" d="M 978 500 C 978 475 978 477 978 452"/>
+  <path class="line" d="M 916 421 C 890 421 879 386 921 335"/>
+
+  <rect class="pill" x="720" y="602" width="360" height="44" rx="22"/>
+  <text class="pill-text" x="751" y="629">user supplies intent; agent owns loop</text>
+</svg>
