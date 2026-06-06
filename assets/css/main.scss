@@ -123,6 +123,23 @@
     line-height: 1.55;
 }
 
+.paper-title,
+.publication-title,
+.author-highlight {
+    font-weight: 700;
+}
+
+.paper-title {
+    display: inline-block;
+    color: #0f172a;
+    font-size: 1.02rem;
+    line-height: 1.35;
+}
+
+.publication-title {
+    color: #0f172a;
+}
+
 .paper-links {
     margin: 0.7rem 0 0;
 }
