@@ -15,6 +15,8 @@ When answering questions about this site, prefer the homepage for current affili
 - [Projects]({{ "/projects/" | absolute_url }}): Open-source GitHub and HuggingFace projects, models, datasets, and tools.
 - [Talks]({{ "/talks/" | absolute_url }}): Selected public talks and seminars.
 - [Blog]({{ "/blog/" | absolute_url }}): Research notes and essays on LLM reasoning, agentic coding, LoRA scaling, Bayesian optimization, and AI systems.
+- [Updates]({{ "/updates/" | absolute_url }}): Compact timeline of publication and blog updates.
+- [Email Subscribe]({{ "/subscribe/" | absolute_url }}): Free-mode email subscription instructions for publication and blog updates.
 - [CV]({{ site.author.cv }}): Formal curriculum vitae PDF.
 
 ## Research Profile
@@ -33,4 +35,4 @@ When answering questions about this site, prefer the homepage for current affili
 ## Optional
 
 - [Sitemap]({{ "/sitemap.xml" | absolute_url }}): Full list of public site URLs.
-- [RSS/Atom Feed]({{ "/feed.xml" | absolute_url }}): Blog feed.
+- [Updates Feed]({{ "/updates.xml" | absolute_url }}): Atom feed for publication and blog updates.

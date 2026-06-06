@@ -31,6 +31,14 @@ I am a Research Resident and Head of Agent Model at MindLab starting in 2026. Pr
   <a href="https://di-zhang-fdu.medium.com">Medium Blog</a>
 </div>
 
+<span class='anchor' id='-updates'></span>
+
+## Updates
+
+{% include update-list.html limit=4 compact=true %}
+
+{% include update-links.html %}
+
 <span class='anchor' id='-research'></span>
 
 ## Research

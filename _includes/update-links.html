@@ -1,0 +1,7 @@
+{% assign subscribe_path = site.update_subscription.page | default: "/subscribe/" %}
+
+<p class="update-links">
+  <a href="{{ '/updates/' | relative_url }}">All Updates</a>
+  <a href="{{ '/updates.xml' | relative_url }}">Updates Feed</a>
+  <a href="{{ subscribe_path | relative_url }}">Email Updates</a>
+</p>

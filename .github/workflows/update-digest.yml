@@ -1,0 +1,84 @@
+name: Send update digest
+
+on:
+  schedule:
+    - cron: "17 2 * * 1"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Build the digest and recipient list without sending email"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      force_send:
+        description: "Send the latest entries even if they are outside the update window"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      limit:
+        description: "Maximum update entries in the digest"
+        required: false
+        default: "5"
+      window_days:
+        description: "Send entries updated within this many days"
+        required: false
+        default: "8"
+
+permissions:
+  contents: read
+
+jobs:
+  send:
+    name: Send update digest
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: workers/update-subscriptions/package-lock.json
+
+      - name: Install sender dependencies
+        run: npm ci --prefix workers/update-subscriptions
+
+      - name: Send digest email
+        run: node workers/update-subscriptions/scripts/send-digest.mjs
+        env:
+          UPDATE_FEED_URL: https://trotsky1997.github.io/updates.xml
+          UPDATE_SUBSCRIPTIONS_WORKER_URL: ${{ secrets.UPDATE_SUBSCRIPTIONS_WORKER_URL }}
+          UPDATE_SUBSCRIPTIONS_ADMIN_TOKEN: ${{ secrets.UPDATE_SUBSCRIPTIONS_ADMIN_TOKEN }}
+          UPDATE_SMTP_HOST: ${{ secrets.UPDATE_SMTP_HOST }}
+          UPDATE_SMTP_PORT: ${{ secrets.UPDATE_SMTP_PORT }}
+          UPDATE_SMTP_USER: ${{ secrets.UPDATE_SMTP_USER }}
+          UPDATE_SMTP_PASS: ${{ secrets.UPDATE_SMTP_PASS }}
+          UPDATE_SMTP_SECURE: ${{ secrets.UPDATE_SMTP_SECURE }}
+          UPDATE_MAIL_FROM: ${{ secrets.UPDATE_MAIL_FROM }}
+          UPDATE_MAIL_REPLY_TO: ${{ secrets.UPDATE_MAIL_REPLY_TO }}
+          DIGEST_SUBJECT: Di Zhang publication and blog updates
+          DIGEST_LIMIT: ${{ inputs.limit || '5' }}
+          UPDATE_DIGEST_WINDOW_DAYS: ${{ inputs.window_days || '8' }}
+          UPDATE_DIGEST_FORCE_SEND: ${{ inputs.force_send || 'false' }}
+          UPDATE_DIGEST_DRY_RUN: ${{ inputs.dry_run || 'false' }}
+
+      - name: Upload digest audit artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: update-digest
+          path: |
+            dist/update-digest.txt
+            dist/update-digest-report.json
+          retention-days: 14
+          if-no-files-found: ignore

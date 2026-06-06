@@ -1,0 +1,30 @@
+{% assign updates = site.data.updates | sort: "date" | reverse %}
+{% assign update_limit = include.limit | default: updates.size %}
+
+<div class="update-list{% if include.compact %} update-list--compact{% endif %}">
+  {% for update in updates limit:update_limit %}
+    {% assign target = update.url %}
+    {% if target contains "://" %}
+      {% assign href = target %}
+    {% else %}
+      {% assign href = target | relative_url %}
+    {% endif %}
+  <article class="update-item" id="{{ update.id | slugify }}">
+    <div class="update-meta">
+      <time class="update-date" datetime="{{ update.date | date_to_xmlschema }}">{{ update.date | date: "%b %-d, %Y" }}</time>
+      <span class="update-type">{{ update.type }}</span>
+    </div>
+    <div class="update-body">
+      <h3><a href="{{ href }}" aria-label="{{ update.title | escape }}">{{ update.title }}</a></h3>
+      <p>{{ update.summary }}</p>
+      {% if update.tags %}
+      <div class="update-tags" aria-label="Tags">
+        {% for tag in update.tags %}
+        <span class="update-tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </article>
+  {% endfor %}
+</div>

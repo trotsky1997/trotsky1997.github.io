@@ -65,7 +65,7 @@ function isStaticAsset(pathname) {
     pathname.startsWith("{{ '/files/' | relative_url }}") ||
     pathname === "{{ '/llms.txt' | relative_url }}" ||
     pathname === "{{ '/robots.txt' | relative_url }}" ||
-    pathname === "{{ '/feed.xml' | relative_url }}";
+    pathname === "{{ '/updates.xml' | relative_url }}";
 }
 
 async function networkFirst(request, cacheName) {

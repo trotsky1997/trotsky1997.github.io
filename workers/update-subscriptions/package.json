@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check src/index.js",
+    "digest": "node scripts/generate-digest.mjs",
+    "send:digest": "node scripts/send-digest.mjs",
+    "test": "node tests/smoke.mjs",
+    "dev:local": "npx wrangler dev --config wrangler.toml",
+    "d1:local": "npx wrangler d1 migrations apply dz-update-subscriptions --local --config wrangler.toml"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.16"
+  }
+}

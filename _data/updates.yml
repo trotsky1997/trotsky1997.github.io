@@ -1,0 +1,54 @@
+- id: triquetra-lora-rank-learning-rate
+  date: 2026-03-24
+  type: blog
+  title: "Triquetra for LoRAs"
+  summary: "Blog entry on how LoRA rank, alpha, and learning rate move together when update scale changes."
+  url: "/blog/triquetra-for-loras-entangled-knobs-when-lora-rank-changes-how-should-learning-rate-move/"
+  tags:
+    - lora
+    - optimization
+    - ai-systems
+
+- id: harness-engineering-shell-for-the-ghost
+  date: 2026-04-04
+  type: blog
+  title: "Harness Engineering"
+  summary: "Blog entry framing harnesses as the operating shell around agentic systems."
+  url: "/blog/harness-engineering-building-the-shell-for-the-ghost/"
+  tags:
+    - agents
+    - harness
+    - systems
+
+- id: mint-managed-infrastructure
+  date: 2026-06-06
+  type: publication
+  title: "MinT: Managed Infrastructure for Training and Serving Millions of LLMs"
+  summary: "Publication entry added for MinT, a managed infrastructure system for training and serving large numbers of LLMs."
+  url: "https://huggingface.co/papers/2605.13779"
+  tags:
+    - llm-infrastructure
+    - training
+    - serving
+
+- id: delta-mem-online-memory
+  date: 2026-06-06
+  type: publication
+  title: "delta-mem: Efficient Online Memory for Large Language Models"
+  summary: "Publication entry added for delta-mem, an efficient online memory approach for large language models."
+  url: "https://huggingface.co/papers/2605.12357"
+  tags:
+    - memory
+    - llm
+    - systems
+
+- id: agent-own-loop-harness
+  date: 2026-06-06
+  type: blog
+  title: "Agent-Own Loop Harness"
+  summary: "Blog entry on turning OpenSpec from a human-attended workflow into an agent-owned SDD loop."
+  url: "/blog/agent-own-loop-harness-when-sdd-runs-itself/"
+  tags:
+    - agents
+    - openspec
+    - sdd

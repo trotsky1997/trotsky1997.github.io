@@ -1,0 +1,22 @@
+name = "dz-update-subscriptions"
+main = "src/index.js"
+compatibility_date = "2026-06-06"
+
+# Copy this file to wrangler.toml only when you intentionally configure
+# Cloudflare resources. Do not commit real account IDs, database IDs, or secrets.
+
+[vars]
+SITE_ORIGIN = "https://trotsky1997.github.io"
+UPDATE_FEED_URL = "https://trotsky1997.github.io/updates.xml"
+PUBLIC_WORKER_URL = "http://127.0.0.1:8787"
+DIGEST_SUBJECT = "Di Zhang publication and blog updates"
+
+# Local/dev placeholder values. Replace with Wrangler secrets in production.
+ADMIN_TOKEN = "dev-admin-token"
+TOKEN_SECRET = "dev-token-secret-change-me"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "dz-update-subscriptions"
+database_id = "local-placeholder"
+preview_database_id = "dz-update-subscriptions-local"

@@ -58,6 +58,11 @@ author:
   youtube          :
   wikipedia        :
 
+update_subscription:
+  page             : "/subscribe/"
+  worker_url       : "https://dz-update-subscriptions.qq893371906.workers.dev"
+  email            : "updates@chemllm.org"
+
 include:
   - .htaccess
   - _pages
@@ -141,14 +146,12 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
-  - jekyll-feed
   - jekyll-redirect-from
 
 whitelist:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
-  - jekyll-feed
   - jemoji
 
 compress_html:
