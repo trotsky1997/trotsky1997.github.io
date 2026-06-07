@@ -20,6 +20,17 @@
     - harness
     - systems
 
+- id: peft-scaling-million-personal-models
+  date: 2026-06-08
+  type: publication
+  title: "On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters"
+  summary: "Publication entry added for a study reframing PEFT as a substrate for persistent personal models scaled up, down, and out."
+  url: "https://huggingface.co/papers/2606.02437"
+  tags:
+    - peft
+    - personal-models
+    - llm-infrastructure
+
 - id: mint-managed-infrastructure
   date: 2026-06-06
   type: publication

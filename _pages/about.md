@@ -47,7 +47,7 @@ My current research is centered on the work I have pursued since 2025:
 
 - **LLM reasoning**: test-time scaling, reinforcement learning, tree search, self-evaluation, critic models, and controllable reasoning, represented by Llama-Berry, Control-R, SELT, Chem-R, Critic-V, and TinyEye.
 - **Scientific intelligence**: foundation models and reasoning systems for chemistry, materials science, molecules, and scientific discovery, represented by ChemVLM, Mol-R1, MolReflect, ChemAgent, MOOSE-Chem3, CMPhysBench, and LoRA-Chem.
-- **Agentic learning**: tool-using agents, memory, retrieval-time critique, scalable training/serving infrastructure, and protocols for agentic model development, represented by MinT, delta-mem, Retrieval Is Not Enough, and MCP-based reasoning.
+- **Agentic learning**: tool-using agents, memory, retrieval-time critique, scalable training/serving infrastructure, parameter-efficient personal models, and protocols for agentic model development, represented by PEFT scaling, MinT, delta-mem, Retrieval Is Not Enough, and MCP-based reasoning.
 
 <span class='anchor' id='-publications'></span>
 
@@ -138,6 +138,7 @@ IEEE Transactions on Knowledge and Data Engineering, 2026.
 ### 2026
 
 <ol class="publication-list">
+  <li><span class="publication-title">On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters.</span><br>Mind Lab, Song Cao, Vic Cao, Kaijie Chen, Bunny Fan, Hera Feng, Huan Feng, Arthur Fu, Jun Gao, Hongquan Gu, and others. <span class="venue">arXiv preprint arXiv:2606.02437, 2026.</span> <a href="https://huggingface.co/papers/2606.02437">HF Paper</a></li>
   <li><span class="publication-title">MinT: Managed Infrastructure for Training and Serving Millions of LLMs.</span><br>Mind Lab, Song Cao, Vic Cao, Andrew Chen, Kaijie Chen, Cleon Cheng, Steven Chiang, Kaixuan Fan, Hera Feng, Huan Feng, and others. <span class="venue">arXiv preprint arXiv:2605.13779, 2026.</span> <a href="https://huggingface.co/papers/2605.13779">HF Paper</a></li>
   <li><span class="publication-title">delta-mem: Efficient Online Memory for Large Language Models.</span><br>Jingdi Lei, <span class="author-highlight">Di Zhang</span>, Junxian Li, Weida Wang, Kaixuan Fan, Xiang Liu, Qihan Liu, Xiaoteng Ma, Baian Chen, Soujanya Poria. <span class="venue">arXiv preprint arXiv:2605.12357, 2026.</span> <a href="https://huggingface.co/papers/2605.12357">HF Paper</a></li>
   <li><span class="publication-title">Golden Goose: A Simple Trick to Synthesize Unlimited RLVR Tasks from Unverifiable Internet Text.</span><br>Ximing Lu, David Acuna, Jaehun Jung, Jian Hu, <span class="author-highlight">Di Zhang</span>, Shizhe Diao, Yunheng Zou, Shaokun Zhang, Brandon Cui, Mingjie Liu, and others. <span class="venue">arXiv preprint arXiv:2601.22975, 2026.</span> <a href="https://arxiv.org/abs/2601.22975">arXiv</a></li>
