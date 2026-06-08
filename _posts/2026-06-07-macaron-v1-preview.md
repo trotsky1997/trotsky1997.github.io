@@ -6,6 +6,17 @@ categories: [Blog]
 tags: [agentic-ai, macaron, mol, lora, glm, generative-ui]
 excerpt: "Macaron-V1-Preview is a 749B Mixture-of-LoRA Agent Model post-trained from GLM5.1."
 original_url: "https://macaron.im/mindlab/research/macaron-v1-preview"
+original_site: "Mind Lab"
+citation_text: >-
+  Mind Lab. "Macaron-V1-Preview: 749B MoL Agent Model post-trained from GLM5.1." Mind Lab: A Lab for Experiential Intelligence, 2026. https://macaron.im/mindlab/research/macaron-v1-preview
+citation_bibtex: |
+  @misc{mindlab2026macaronv1preview,
+    author = {{Mind Lab}},
+    title = {Macaron-V1-Preview: 749B MoL Agent Model post-trained from GLM5.1},
+    year = {2026},
+    howpublished = {Mind Lab: A Lab for Experiential Intelligence},
+    note = {https://macaron.im/mindlab/research/macaron-v1-preview}
+  }
 ---
 
 <p>We introduce <strong>Macaron-V1-Preview</strong>, a <strong>749B (744B base + 5</strong> × 1B LoRA) Agent Model post-trained from GLM5.1 with <a href="https://github.com/MindLab-Research/mindlab-toolkit"><strong>MinT</strong></a>. Macaron-V1-Preview leverages a novel <strong>Mixture-of-LoRA (MoL)</strong> architecture to provide a scalable, resource-efficient foundation for advanced agentic use cases in general life scenarios.</p>
@@ -250,10 +261,4 @@ original_url: "https://macaron.im/mindlab/research/macaron-v1-preview"
 <p>Please cite this work using the BibTeX citation:</p>
 
 
-<pre><code class="language-bibtex">@misc{mindlab2026macaronv1preview,
-  author = &#123;&#123;Mind Lab&#125;&#125;,
-  title = {Macaron-V1-Preview: 749B MoL Agent Model post-trained from GLM5.1},
-  year = {2026},
-  howpublished = {Mind Lab: A Lab for Experiential Intelligence},
-  note = {https://macaron.im/mindlab/research/macaron-v1-preview}
-}</code></pre>
+<pre><code class="language-bibtex">{{ page.citation_bibtex | strip | escape }}</code></pre>

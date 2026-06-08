@@ -1,3 +1,14 @@
+- id: macaron-v1-preview
+  date: 2026-06-07
+  type: blog
+  title: "Macaron-V1-Preview"
+  summary: "Original English repost of Mind Lab's Macaron-V1-Preview release for the 749B Mixture-of-LoRA Agent Model post-trained from GLM5.1."
+  url: "/blog/macaron-v1-preview/"
+  tags:
+    - macaron
+    - agent-models
+    - mol
+
 - id: triquetra-lora-rank-learning-rate
   date: 2026-03-24
   type: blog
