@@ -35,10 +35,13 @@ layout: default
         </ol>
       </nav>
     </details>
+    <div class="post-toc-actions">
+      <button class="copy-markdown-button" type="button" aria-label="Copy this post as Markdown" data-copy-markdown-target=".post-body">Copy as Markdown</button>
+    </div>
   </aside>
   {% endif %}
 
-  <div class="post-body">
+  <div class="post-body" data-markdown-title="{{ page.title | strip_html | strip | escape }}" data-markdown-date="{% if page.date %}{{ page.date | date: '%B %-d, %Y' }}{% endif %}" data-markdown-source-url="{{ page.url | absolute_url }}">
     {{ content }}
   </div>
 </div>

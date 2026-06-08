@@ -773,6 +773,48 @@ h1:before, .anchor:before {
             text-underline-offset: 0.16em;
         }
     }
+
+    .post-toc-actions {
+        margin-top: 0.75rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid var(--site-line);
+    }
+
+    .copy-markdown-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 2.05rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        padding: 0.34rem 0.55rem;
+        background: #f8fafc;
+        color: #1e40af;
+        font-size: 0.8rem;
+        font-weight: 800;
+        line-height: 1.25;
+        cursor: pointer;
+        transition: border-color 120ms ease, background 120ms ease, color 120ms ease;
+
+        &:hover {
+            border-color: #93c5fd;
+            background: #eff6ff;
+            color: var(--site-blue);
+        }
+
+        &.copied {
+            border-color: #86efac;
+            background: #f0fdf4;
+            color: #166534;
+        }
+
+        &.failed {
+            border-color: #fca5a5;
+            background: #fef2f2;
+            color: #991b1b;
+        }
+    }
 }
 
 .page__content .post-header + p,

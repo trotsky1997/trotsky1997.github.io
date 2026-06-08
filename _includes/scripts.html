@@ -1,4 +1,7 @@
 {% assign asset_version = site.time | date: "%Y%m%d%H%M%S" %}
+{% if page.layout == "post" %}
+<script src="{{ '/assets/vendor/turndown/turndown.browser.umd.js' | relative_url }}?v={{ asset_version }}" defer></script>
+{% endif %}
 <script src="{{ '/assets/js/site.min.js' | relative_url }}?v={{ asset_version }}" defer></script>
 
 {% include analytics.html %}
