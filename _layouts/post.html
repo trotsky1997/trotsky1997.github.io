@@ -19,8 +19,8 @@ layout: default
 {% assign toc_items = content | split: '<h3 id="' %}
 
 <div class="post-layout">
-  {% if toc_items.size > 1 %}
-  <aside class="post-toc">
+  <aside class="post-toc{% unless toc_items.size > 1 %} post-toc--actions-only{% endunless %}">
+    {% if toc_items.size > 1 %}
     <details open>
       <summary>Contents</summary>
       <nav>
@@ -35,11 +35,11 @@ layout: default
         </ol>
       </nav>
     </details>
+    {% endif %}
     <div class="post-toc-actions">
       <button class="copy-markdown-button" type="button" aria-label="Copy this post as Markdown" data-copy-markdown-target=".post-body">Copy as Markdown</button>
     </div>
   </aside>
-  {% endif %}
 
   <div class="post-body" data-markdown-title="{{ page.title | strip_html | strip | escape }}" data-markdown-date="{% if page.date %}{{ page.date | date: '%B %-d, %Y' }}{% endif %}" data-markdown-source-url="{{ page.url | absolute_url }}">
     {{ content }}
