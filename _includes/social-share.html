@@ -20,9 +20,9 @@
   <a class="btn btn--facebook btn--small" href="https://www.facebook.com/sharer/sharer.php?u={{ share_url_encoded }}" target="_blank" rel="noopener noreferrer">
     <span>Facebook</span>
   </a>
-  <a class="btn btn--weibo btn--small" href="https://service.weibo.com/share/share.php?url={{ share_url_encoded }}&title={{ share_title_encoded }}" target="_blank" rel="noopener noreferrer">
-    <span>Weibo</span>
-  </a>
+  <button class="btn btn--xiaohongshu btn--small xiaohongshu-share-button" type="button" data-share-url="{{ share_url }}" data-share-title="{{ share_title | escape }}" data-share-summary="{{ share_summary | escape }}" aria-label="Share to Xiaohongshu">
+    <span>Xiaohongshu</span>
+  </button>
   <a class="btn btn--inverse btn--small" href="mailto:?subject={{ share_title_encoded }}&body={{ share_email_body }}">
     <span>Email</span>
   </a>

@@ -150,6 +150,46 @@
     });
   }
 
+  function setupXiaohongshuShare() {
+    document.querySelectorAll(".xiaohongshu-share-button").forEach(function (button) {
+      button.addEventListener("click", function () {
+        var url = button.getAttribute("data-share-url") || window.location.href;
+        var title = button.getAttribute("data-share-title") || document.title;
+        var summary = button.getAttribute("data-share-summary") || "";
+        var label = button.querySelector("span");
+        var originalLabel = label ? label.textContent : button.textContent;
+        var shareText = [title, summary, url].filter(Boolean).join("\n\n");
+        var markCopied = function () {
+          button.classList.add("copied");
+          if (label) label.textContent = "Copied";
+          window.setTimeout(function () {
+            button.classList.remove("copied");
+            if (label) label.textContent = originalLabel;
+          }, 1600);
+        };
+        var openXiaohongshu = function () {
+          window.open("https://www.xiaohongshu.com/explore", "_blank", "noopener,noreferrer");
+        };
+        var copyAndOpen = function () {
+          copyText(shareText, function () {
+            markCopied();
+            openXiaohongshu();
+          }, openXiaohongshu);
+        };
+
+        if (navigator.share) {
+          navigator.share({
+            title: title,
+            text: summary || title,
+            url: url
+          }).catch(copyAndOpen);
+        } else {
+          copyAndOpen();
+        }
+      });
+    });
+  }
+
   function fallbackCopyText(text, onCopied, onFailed) {
     var textarea = document.createElement("textarea");
     textarea.value = text;
@@ -281,6 +321,7 @@
     setupNavigation();
     setupSmoothAnchors();
     setupShareCopy();
+    setupXiaohongshuShare();
     setupMarkdownCopy();
     registerServiceWorker();
   });

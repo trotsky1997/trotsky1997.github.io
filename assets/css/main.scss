@@ -1045,15 +1045,16 @@ h1:before, .anchor:before {
         line-height: 1.35;
     }
 
-    .btn--weibo {
-        background-color: #e6162d;
+    .btn--xiaohongshu {
+        background-color: #ff2442;
 
         &:hover {
-            background-color: #b51023;
+            background-color: #d91f39;
         }
     }
 
-    .share-link-button.copied {
+    .share-link-button.copied,
+    .xiaohongshu-share-button.copied {
         border-color: #86efac !important;
         background: #f0fdf4;
         color: #166534 !important;
