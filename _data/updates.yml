@@ -1,3 +1,14 @@
+- id: citeclaw-reference-infrastructure
+  date: 2026-06-10
+  type: blog
+  title: "CiteClaw: Reference Infrastructure for Agentic Research"
+  summary: "Blog entry introducing CiteClaw as reference infrastructure for agentic research, with emphasis on citation tools, MCP access, Zotero state, and the bibliography curation skill."
+  url: "/blog/citeclaw-reference-infrastructure-for-agentic-research/"
+  tags:
+    - citeclaw
+    - citations
+    - agents
+
 - id: macaron-v1-preview
   date: 2026-06-07
   type: blog
