@@ -200,3 +200,9 @@ IEEE Transactions on Knowledge and Data Engineering, 2026.
 
 - **Fudan University**, PhD Candidate, 2023-present.
 - **University of Science and Technology of China**, Master of Engineering, Robotics Lab, 2019-2022.
+
+---
+
+Occasionally open to technically grounded collaborations and advisory
+conversations around agentic AI systems, research infrastructure, and scientific
+intelligence. [Collaborate](/collaborate/).
