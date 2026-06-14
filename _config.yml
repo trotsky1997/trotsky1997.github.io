@@ -3,9 +3,9 @@ title                    : "Di Zhang"
 tagline                  : "LLM Reasoning, Scientific Intelligence, and Agentic Learning"
 description              : "Di Zhang is a PhD candidate at Fudan University working on LLM reasoning, scientific intelligence, agentic learning, and foundation models for scientific discovery."
 keywords                 : "Di Zhang, 张迪, Fudan University, LLM reasoning, scientific intelligence, agentic learning, chemical AI, multimodal reasoning, test-time scaling, reinforcement learning, scientific discovery"
-url                      : "https://trotsky1997.github.io"
+url                      : "https://di-zhang-llm.github.io"
 baseurl                  : ""
-repository               : "trotsky1997/trotsky1997.github.io"
+repository               : "di-zhang-llm/di-zhang-llm.github.io"
 
 # Google analytics
 google_analytics_id      :

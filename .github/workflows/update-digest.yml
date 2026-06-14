@@ -56,7 +56,7 @@ jobs:
       - name: Send digest email
         run: node workers/update-subscriptions/scripts/send-digest.mjs
         env:
-          UPDATE_FEED_URL: https://trotsky1997.github.io/updates.xml
+          UPDATE_FEED_URL: https://di-zhang-llm.github.io/updates.xml
           UPDATE_SUBSCRIPTIONS_WORKER_URL: ${{ secrets.UPDATE_SUBSCRIPTIONS_WORKER_URL }}
           UPDATE_SUBSCRIPTIONS_ADMIN_TOKEN: ${{ secrets.UPDATE_SUBSCRIPTIONS_ADMIN_TOKEN }}
           UPDATE_SMTP_HOST: ${{ secrets.UPDATE_SMTP_HOST }}
