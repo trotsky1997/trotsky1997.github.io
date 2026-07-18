@@ -10,6 +10,6 @@
     "d1:local": "npx wrangler d1 migrations apply dz-update-subscriptions --local --config wrangler.toml"
   },
   "dependencies": {
-    "nodemailer": "^6.9.16"
+    "nodemailer": "^8.0.5"
   }
 }
